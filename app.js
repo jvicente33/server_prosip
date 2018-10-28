@@ -25,6 +25,8 @@ var Ufs = require('./models/Ufs');
 var Comunas = require('./models/Comunas');
 var Kilometros = require('./models/Kilometros');
 
+const port = process.env.PORT || 8085;
+
 //const MONGO_URL = process.env.MONGO_URL || 'mongodb://localhost:27017/prosip';
 const MONGO_URL = 'mongodb://userprosip:prosip1234@ds163758.mlab.com:63758/prosip';
 
@@ -961,6 +963,6 @@ app.get('/kilometros',function(req, res) {
 /*
 * Run Server
 */
-app.listen(8085, function () {
+app.listen(PORT, function () {
     console.log('Example app listening on port 8085!')
 })
