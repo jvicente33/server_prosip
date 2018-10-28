@@ -963,6 +963,6 @@ app.get('/kilometros',function(req, res) {
 /*
 * Run Server
 */
-app.listen(PORT, function () {
+app.listen(port, function () {
     console.log('Example app listening on port 8085!')
 })
