@@ -25,7 +25,9 @@ var Ufs = require('./models/Ufs');
 var Comunas = require('./models/Comunas');
 var Kilometros = require('./models/Kilometros');
 
-const MONGO_URL = process.env.MONGO_URL || 'mongodb://localhost:27017/prosip';
+//const MONGO_URL = process.env.MONGO_URL || 'mongodb://localhost:27017/prosip';
+const MONGO_URL = 'mongodb://userprosip:prosip1234@ds163758.mlab.com:63758/prosip';
+
 
 mongo.connect(MONGO_URL, function(err, response){
     if(err)
