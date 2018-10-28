@@ -2,6 +2,7 @@ var mongoose = require('mongoose')
 var Schema = mongoose.Schema;
 
 var MaterialesSchema = new Schema({
+    id_producto: Number,
     codigo: String,
     elemento: String,
     clase: String,
@@ -9,7 +10,7 @@ var MaterialesSchema = new Schema({
     descripcion: String,
     altura: String,
     volumen: String,
-    precio_prosip: String
+    promedio: Number
 });
 
 var Materiales = mongoose.model('materiales', MaterialesSchema);

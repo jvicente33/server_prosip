@@ -25,7 +25,9 @@ var Ufs = require('./models/Ufs');
 var Comunas = require('./models/Comunas');
 var Kilometros = require('./models/Kilometros');
 
-mongo.connect("mongodb://localhost:27017/prosip", function(err, response){
+const MONGO_URL = process.env.MONGO_URL || 'mongodb://localhost:27017/prosip';
+
+mongo.connect(MONGO_URL, function(err, response){
     if(err)
     {
         console.log( err);
@@ -48,7 +50,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 /*
 * Find t_zonas por parameters
 */
-app.post('/tzonas', function(req, res) {
+app.get('/tzonas', function(req, res) {
     TZonas.find({}, function (err, result) {
         if(err)
         {
@@ -63,10 +65,51 @@ app.post('/tzonas', function(req, res) {
 });
 
 /*
+* Created materiales muchos
+*/
+app.post('/tzonas/newall', function (req, res) {
+    if (req.body) {
+
+        let data = req.body
+        for (let i in data) {
+
+            let fields = data[i];
+
+            TZonas.findOne({ _id: fields._id }, function (err, result) {
+                if (err) {
+                    console.log(err);
+                    res.json({ error: "error interno, inténtelo más tarde" });
+                }
+                else {
+                    if (result) {
+                        res.json({ msg: "zona ya existe" });
+                    }
+                    else {
+                        TZonas.create(fields, function (err, rest) {
+                            if (err) {
+                                console.log(err);
+                                res.json({ error: "error interno, inténtelo más tarde" });
+                            }
+                        });
+                    }
+                }
+            });
+
+        }
+
+        res.json({ result: true });
+
+    }
+    else {
+        res.json({ msg: "sin parametros" });
+    }
+});
+
+/*
 * Find t_precios por parameters
 */
-app.post('/tprecios',function(req, res) {
-    TPrecios.find({}, function (err, result) {
+app.get('/tprecios',function(req, res) {
+    Materiales.find({}, function (err, result) {
         if(err)
         {
             console.log(err);
@@ -760,6 +803,47 @@ app.post('/materiales/new',function(req, res) {
 });
 
 /*
+* Created materiales muchos
+*/
+app.post('/materiales/newall', function (req, res) {
+    if (req.body) {
+
+        let data = req.body
+        for(let i in data){
+
+            let fields = data[i];
+            fields.codigo = fields.codigo.toUpperCase();
+
+            Materiales.findOne({ codigo: fields.codigo }, function (err, result) {
+                if (err) {
+                    console.log(err);
+                    res.json({ error: "error interno, inténtelo más tarde" });
+                }
+                else {
+                    if (result) {
+                        res.json({ msg: "código ya existe" });
+                    }
+                    else {
+                        Materiales.create(fields, function (err, rest) {
+                            if (err) {
+                                console.log(err);
+                                res.json({ error: "error interno, inténtelo más tarde" });
+                            }
+                        });
+                    }
+                }
+            });
+
+        }
+        res.json({ result: true });
+
+    }
+    else {
+        res.json({ msg: "sin parametros" });
+    }
+});
+
+/*
 * Edit materiales
 */
 app.post('/materiales/edit',function(req, res) {
@@ -767,6 +851,7 @@ app.post('/materiales/edit',function(req, res) {
     {
         let fields=req.body;
         fields.codigo=fields.codigo.toUpperCase();
+        console.log(fields);
 
         Materiales.findOne({codigo:fields.codigo}, function (err, result) {
             if(err)

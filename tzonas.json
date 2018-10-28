@@ -1,0 +1,1402 @@
+[
+     {
+          "_id": "5adf9772a27b5e6f07735a8f",
+          "id_zona": 1,
+          "nombre": "Zona 1",
+          "id_norma": 1,
+          "tipo": "Techos",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735a90",
+          "id_zona": 2,
+          "nombre": "Zona 2",
+          "id_norma": 1,
+          "tipo": "Techos",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735a91",
+          "id_zona": 3,
+          "nombre": "Zona 3",
+          "id_norma": 1,
+          "tipo": "Techos",
+          "id_producto": 5
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735a92",
+          "id_zona": 4,
+          "nombre": "Zona 4",
+          "id_norma": 1,
+          "tipo": "Techos",
+          "id_producto": 7
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735a93",
+          "id_zona": 5,
+          "nombre": "Zona 5",
+          "id_norma": 1,
+          "tipo": "Techos",
+          "id_producto": 7
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735a94",
+          "id_zona": 6,
+          "nombre": "Zona 6",
+          "id_norma": 1,
+          "tipo": "Techos",
+          "id_producto": 8
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735a95",
+          "id_zona": 7,
+          "nombre": "Zona 7",
+          "id_norma": 1,
+          "tipo": "Techos",
+          "id_producto": 9
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735a96",
+          "id_zona": 1,
+          "nombre": "Zona 1",
+          "id_norma": 1,
+          "tipo": "Muros",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735a97",
+          "id_zona": 2,
+          "nombre": "Zona 2",
+          "id_norma": 1,
+          "tipo": "Muros",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735a98",
+          "id_zona": 3,
+          "nombre": "Zona 3",
+          "id_norma": 1,
+          "tipo": "Muros",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735a99",
+          "id_zona": 4,
+          "nombre": "Zona 4",
+          "id_norma": 1,
+          "tipo": "Muros",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735a9a",
+          "id_zona": 5,
+          "nombre": "Zona 5",
+          "id_norma": 1,
+          "tipo": "Muros",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735a9b",
+          "id_zona": 6,
+          "nombre": "Zona 6",
+          "id_norma": 1,
+          "tipo": "Muros",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735a9c",
+          "id_zona": 7,
+          "nombre": "Zona 7",
+          "id_norma": 1,
+          "tipo": "Muros",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735a9d",
+          "id_zona": 1,
+          "nombre": "Zona 1",
+          "id_norma": 1,
+          "tipo": "Pisos",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735a9e",
+          "id_zona": 2,
+          "nombre": "Zona 2",
+          "id_norma": 1,
+          "tipo": "Pisos",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735a9f",
+          "id_zona": 3,
+          "nombre": "Zona 3",
+          "id_norma": 1,
+          "tipo": "Pisos",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735aa0",
+          "id_zona": 4,
+          "nombre": "Zona 4",
+          "id_norma": 1,
+          "tipo": "Pisos",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735aa1",
+          "id_zona": 5,
+          "nombre": "Zona 5",
+          "id_norma": 1,
+          "tipo": "Pisos",
+          "id_producto": 5
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735aa2",
+          "id_zona": 6,
+          "nombre": "Zona 6",
+          "id_norma": 1,
+          "tipo": "Pisos",
+          "id_producto": 7
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735aa3",
+          "id_zona": 7,
+          "nombre": "Zona 7",
+          "id_norma": 1,
+          "tipo": "Pisos",
+          "id_producto": 8
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735aa4",
+          "id_zona": 1,
+          "nombre": "Zona 1",
+          "id_norma": 2,
+          "tipo": "Techos",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735aa5",
+          "id_zona": 2,
+          "nombre": "Zona 2",
+          "id_norma": 2,
+          "tipo": "Techos",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735aa6",
+          "id_zona": 3,
+          "nombre": "Zona 3",
+          "id_norma": 2,
+          "tipo": "Techos",
+          "id_producto": 5
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735aa7",
+          "id_zona": 4,
+          "nombre": "Zona 4",
+          "id_norma": 2,
+          "tipo": "Techos",
+          "id_producto": 7
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735aa8",
+          "id_zona": 5,
+          "nombre": "Zona 5",
+          "id_norma": 2,
+          "tipo": "Techos",
+          "id_producto": 7
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735aa9",
+          "id_zona": 6,
+          "nombre": "Zona 6",
+          "id_norma": 2,
+          "tipo": "Techos",
+          "id_producto": 8
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735aaa",
+          "id_zona": 7,
+          "nombre": "Zona 7",
+          "id_norma": 2,
+          "tipo": "Techos",
+          "id_producto": 9
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735aab",
+          "id_zona": 1,
+          "nombre": "Zona 1",
+          "id_norma": 2,
+          "tipo": "Muros",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735aac",
+          "id_zona": 2,
+          "nombre": "Zona 2",
+          "id_norma": 2,
+          "tipo": "Muros",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735aad",
+          "id_zona": 3,
+          "nombre": "Zona 3",
+          "id_norma": 2,
+          "tipo": "Muros",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735aae",
+          "id_zona": 4,
+          "nombre": "Zona 4",
+          "id_norma": 2,
+          "tipo": "Muros",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735aaf",
+          "id_zona": 5,
+          "nombre": "Zona 5",
+          "id_norma": 2,
+          "tipo": "Muros",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735ab0",
+          "id_zona": 6,
+          "nombre": "Zona 6",
+          "id_norma": 2,
+          "tipo": "Muros",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735ab1",
+          "id_zona": 7,
+          "nombre": "Zona 7",
+          "id_norma": 2,
+          "tipo": "Muros",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735ab2",
+          "id_zona": 1,
+          "nombre": "Zona 1",
+          "id_norma": 2,
+          "tipo": "Pisos",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735ab3",
+          "id_zona": 2,
+          "nombre": "Zona 2",
+          "id_norma": 2,
+          "tipo": "Pisos",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735ab4",
+          "id_zona": 3,
+          "nombre": "Zona 3",
+          "id_norma": 2,
+          "tipo": "Pisos",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735ab5",
+          "id_zona": 4,
+          "nombre": "Zona 4",
+          "id_norma": 2,
+          "tipo": "Pisos",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735ab6",
+          "id_zona": 5,
+          "nombre": "Zona 5",
+          "id_norma": 2,
+          "tipo": "Pisos",
+          "id_producto": 5
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735ab7",
+          "id_zona": 6,
+          "nombre": "Zona 6",
+          "id_norma": 2,
+          "tipo": "Pisos",
+          "id_producto": 7
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735ab8",
+          "id_zona": 7,
+          "nombre": "Zona 7",
+          "id_norma": 2,
+          "tipo": "Pisos",
+          "id_producto": 8
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735ab9",
+          "id_zona": 1,
+          "nombre": "Zona 1",
+          "id_norma": 3,
+          "tipo": "Techos",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735aba",
+          "id_zona": 2,
+          "nombre": "Zona 2",
+          "id_norma": 3,
+          "tipo": "Techos",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735abb",
+          "id_zona": 3,
+          "nombre": "Zona 3",
+          "id_norma": 3,
+          "tipo": "Techos",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735abc",
+          "id_zona": 4,
+          "nombre": "Zona 4",
+          "id_norma": 3,
+          "tipo": "Techos",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735abd",
+          "id_zona": 5,
+          "nombre": "Zona 5",
+          "id_norma": 3,
+          "tipo": "Techos",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735abe",
+          "id_zona": 6,
+          "nombre": "Zona 6",
+          "id_norma": 3,
+          "tipo": "Techos",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735abf",
+          "id_zona": 7,
+          "nombre": "Zona 7",
+          "id_norma": 3,
+          "tipo": "Techos",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735ac0",
+          "id_zona": 1,
+          "nombre": "Zona 1",
+          "id_norma": 3,
+          "tipo": "Muros",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735ac1",
+          "id_zona": 2,
+          "nombre": "Zona 2",
+          "id_norma": 3,
+          "tipo": "Muros",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735ac2",
+          "id_zona": 3,
+          "nombre": "Zona 3",
+          "id_norma": 3,
+          "tipo": "Muros",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735ac3",
+          "id_zona": 4,
+          "nombre": "Zona 4",
+          "id_norma": 3,
+          "tipo": "Muros",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735ac4",
+          "id_zona": 5,
+          "nombre": "Zona 5",
+          "id_norma": 3,
+          "tipo": "Muros",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735ac5",
+          "id_zona": 6,
+          "nombre": "Zona 6",
+          "id_norma": 3,
+          "tipo": "Muros",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735ac6",
+          "id_zona": 7,
+          "nombre": "Zona 7",
+          "id_norma": 3,
+          "tipo": "Muros",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735ac7",
+          "id_zona": 1,
+          "nombre": "Zona 1",
+          "id_norma": 3,
+          "tipo": "Pisos",
+          "id_producto": 8
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735ac8",
+          "id_zona": 2,
+          "nombre": "Zona 2",
+          "id_norma": 3,
+          "tipo": "Pisos",
+          "id_producto": 8
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735ac9",
+          "id_zona": 3,
+          "nombre": "Zona 3",
+          "id_norma": 3,
+          "tipo": "Pisos",
+          "id_producto": 8
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735aca",
+          "id_zona": 4,
+          "nombre": "Zona 4",
+          "id_norma": 3,
+          "tipo": "Pisos",
+          "id_producto": 8
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735acb",
+          "id_zona": 5,
+          "nombre": "Zona 5",
+          "id_norma": 3,
+          "tipo": "Pisos",
+          "id_producto": 8
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735acc",
+          "id_zona": 6,
+          "nombre": "Zona 6",
+          "id_norma": 3,
+          "tipo": "Pisos",
+          "id_producto": 8
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735acd",
+          "id_zona": 7,
+          "nombre": "Zona 7",
+          "id_norma": 3,
+          "tipo": "Pisos",
+          "id_producto": 8
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735ace",
+          "id_zona": 1,
+          "nombre": "Zona 1",
+          "id_norma": 4,
+          "tipo": "Techos",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735acf",
+          "id_zona": 2,
+          "nombre": "Zona 2",
+          "id_norma": 4,
+          "tipo": "Techos",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735ad0",
+          "id_zona": 3,
+          "nombre": "Zona 3",
+          "id_norma": 4,
+          "tipo": "Techos",
+          "id_producto": 5
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735ad1",
+          "id_zona": 4,
+          "nombre": "Zona 4",
+          "id_norma": 4,
+          "tipo": "Techos",
+          "id_producto": 7
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735ad2",
+          "id_zona": 5,
+          "nombre": "Zona 5",
+          "id_norma": 4,
+          "tipo": "Techos",
+          "id_producto": 7
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735ad3",
+          "id_zona": 6,
+          "nombre": "Zona 6",
+          "id_norma": 4,
+          "tipo": "Techos",
+          "id_producto": 8
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735ad4",
+          "id_zona": 7,
+          "nombre": "Zona 7",
+          "id_norma": 4,
+          "tipo": "Techos",
+          "id_producto": 9
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735ad5",
+          "id_zona": 1,
+          "nombre": "Zona 1",
+          "id_norma": 4,
+          "tipo": "Muros",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735ad6",
+          "id_zona": 2,
+          "nombre": "Zona 2",
+          "id_norma": 4,
+          "tipo": "Muros",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735ad7",
+          "id_zona": 3,
+          "nombre": "Zona 3",
+          "id_norma": 4,
+          "tipo": "Muros",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735ad8",
+          "id_zona": 4,
+          "nombre": "Zona 4",
+          "id_norma": 4,
+          "tipo": "Muros",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735ad9",
+          "id_zona": 5,
+          "nombre": "Zona 5",
+          "id_norma": 4,
+          "tipo": "Muros",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735ada",
+          "id_zona": 6,
+          "nombre": "Zona 6",
+          "id_norma": 4,
+          "tipo": "Muros",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735adb",
+          "id_zona": 7,
+          "nombre": "Zona 7",
+          "id_norma": 4,
+          "tipo": "Muros",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735adc",
+          "id_zona": 1,
+          "nombre": "Zona 1",
+          "id_norma": 4,
+          "tipo": "Pisos",
+          "id_producto": 8
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735add",
+          "id_zona": 2,
+          "nombre": "Zona 2",
+          "id_norma": 4,
+          "tipo": "Pisos",
+          "id_producto": 8
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735ade",
+          "id_zona": 3,
+          "nombre": "Zona 3",
+          "id_norma": 4,
+          "tipo": "Pisos",
+          "id_producto": 8
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735adf",
+          "id_zona": 4,
+          "nombre": "Zona 4",
+          "id_norma": 4,
+          "tipo": "Pisos",
+          "id_producto": 8
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735ae0",
+          "id_zona": 5,
+          "nombre": "Zona 5",
+          "id_norma": 4,
+          "tipo": "Pisos",
+          "id_producto": 8
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735ae1",
+          "id_zona": 6,
+          "nombre": "Zona 6",
+          "id_norma": 4,
+          "tipo": "Pisos",
+          "id_producto": 8
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735ae2",
+          "id_zona": 7,
+          "nombre": "Zona 7",
+          "id_norma": 4,
+          "tipo": "Pisos",
+          "id_producto": 8
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735ae3",
+          "id_zona": 1,
+          "nombre": "Zona 1",
+          "id_norma": 5,
+          "tipo": "Techos",
+          "id_producto": 5
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735ae4",
+          "id_zona": 2,
+          "nombre": "Zona 2",
+          "id_norma": 5,
+          "tipo": "Techos",
+          "id_producto": 5
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735ae5",
+          "id_zona": 3,
+          "nombre": "Zona 3",
+          "id_norma": 5,
+          "tipo": "Techos",
+          "id_producto": 5
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735ae6",
+          "id_zona": 4,
+          "nombre": "Zona 4",
+          "id_norma": 5,
+          "tipo": "Techos",
+          "id_producto": 8
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735ae7",
+          "id_zona": 5,
+          "nombre": "Zona 5",
+          "id_norma": 5,
+          "tipo": "Techos",
+          "id_producto": 8
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735ae8",
+          "id_zona": 6,
+          "nombre": "Zona 6",
+          "id_norma": 5,
+          "tipo": "Techos",
+          "id_producto": 8
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735ae9",
+          "id_zona": 7,
+          "nombre": "Zona 7",
+          "id_norma": 5,
+          "tipo": "Techos",
+          "id_producto": 10
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735aea",
+          "id_zona": 1,
+          "nombre": "Zona 1",
+          "id_norma": 5,
+          "tipo": "Muros",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735aeb",
+          "id_zona": 2,
+          "nombre": "Zona 2",
+          "id_norma": 5,
+          "tipo": "Muros",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735aec",
+          "id_zona": 3,
+          "nombre": "Zona 3",
+          "id_norma": 5,
+          "tipo": "Muros",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735aed",
+          "id_zona": 4,
+          "nombre": "Zona 4",
+          "id_norma": 5,
+          "tipo": "Muros",
+          "id_producto": 5
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735aee",
+          "id_zona": 5,
+          "nombre": "Zona 5",
+          "id_norma": 5,
+          "tipo": "Muros",
+          "id_producto": 5
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735aef",
+          "id_zona": 6,
+          "nombre": "Zona 6",
+          "id_norma": 5,
+          "tipo": "Muros",
+          "id_producto": 5
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735af0",
+          "id_zona": 7,
+          "nombre": "Zona 7",
+          "id_norma": 5,
+          "tipo": "Muros",
+          "id_producto": 5
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735af1",
+          "id_zona": 1,
+          "nombre": "Zona 1",
+          "id_norma": 5,
+          "tipo": "Pisos",
+          "id_producto": 8
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735af2",
+          "id_zona": 2,
+          "nombre": "Zona 2",
+          "id_norma": 5,
+          "tipo": "Pisos",
+          "id_producto": 8
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735af3",
+          "id_zona": 3,
+          "nombre": "Zona 3",
+          "id_norma": 5,
+          "tipo": "Pisos",
+          "id_producto": 8
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735af4",
+          "id_zona": 4,
+          "nombre": "Zona 4",
+          "id_norma": 5,
+          "tipo": "Pisos",
+          "id_producto": 8
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735af5",
+          "id_zona": 5,
+          "nombre": "Zona 5",
+          "id_norma": 5,
+          "tipo": "Pisos",
+          "id_producto": 8
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735af6",
+          "id_zona": 6,
+          "nombre": "Zona 6",
+          "id_norma": 5,
+          "tipo": "Pisos",
+          "id_producto": 8
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735af7",
+          "id_zona": 7,
+          "nombre": "Zona 7",
+          "id_norma": 5,
+          "tipo": "Pisos",
+          "id_producto": 10
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735af8",
+          "id_zona": 1,
+          "nombre": "Zona 1",
+          "id_norma": 1,
+          "tipo": "MuroIntMin",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735af9",
+          "id_zona": 2,
+          "nombre": "Zona 2",
+          "id_norma": 1,
+          "tipo": "MuroIntMin",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735afa",
+          "id_zona": 3,
+          "nombre": "Zona 3",
+          "id_norma": 1,
+          "tipo": "MuroIntMin",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735afb",
+          "id_zona": 4,
+          "nombre": "Zona 4",
+          "id_norma": 1,
+          "tipo": "MuroIntMin",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735afc",
+          "id_zona": 5,
+          "nombre": "Zona 5",
+          "id_norma": 1,
+          "tipo": "MuroIntMin",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735afd",
+          "id_zona": 6,
+          "nombre": "Zona 6",
+          "id_norma": 1,
+          "tipo": "MuroIntMin",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735afe",
+          "id_zona": 7,
+          "nombre": "Zona 7",
+          "id_norma": 1,
+          "tipo": "MuroIntMin",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735aff",
+          "id_zona": 1,
+          "nombre": "Zona 1",
+          "id_norma": 2,
+          "tipo": "MuroIntMin",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b00",
+          "id_zona": 2,
+          "nombre": "Zona 2",
+          "id_norma": 2,
+          "tipo": "MuroIntMin",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b01",
+          "id_zona": 3,
+          "nombre": "Zona 3",
+          "id_norma": 2,
+          "tipo": "MuroIntMin",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b02",
+          "id_zona": 4,
+          "nombre": "Zona 4",
+          "id_norma": 2,
+          "tipo": "MuroIntMin",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b03",
+          "id_zona": 5,
+          "nombre": "Zona 5",
+          "id_norma": 2,
+          "tipo": "MuroIntMin",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b04",
+          "id_zona": 6,
+          "nombre": "Zona 6",
+          "id_norma": 2,
+          "tipo": "MuroIntMin",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b05",
+          "id_zona": 7,
+          "nombre": "Zona 7",
+          "id_norma": 2,
+          "tipo": "MuroIntMin",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b06",
+          "id_zona": 1,
+          "nombre": "Zona 1",
+          "id_norma": 3,
+          "tipo": "MuroIntMin",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b07",
+          "id_zona": 2,
+          "nombre": "Zona 2",
+          "id_norma": 3,
+          "tipo": "MuroIntMin",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b08",
+          "id_zona": 3,
+          "nombre": "Zona 3",
+          "id_norma": 3,
+          "tipo": "MuroIntMin",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b09",
+          "id_zona": 4,
+          "nombre": "Zona 4",
+          "id_norma": 3,
+          "tipo": "MuroIntMin",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b0a",
+          "id_zona": 5,
+          "nombre": "Zona 5",
+          "id_norma": 3,
+          "tipo": "MuroIntMin",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b0b",
+          "id_zona": 6,
+          "nombre": "Zona 6",
+          "id_norma": 3,
+          "tipo": "MuroIntMin",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b0c",
+          "id_zona": 7,
+          "nombre": "Zona 7",
+          "id_norma": 3,
+          "tipo": "MuroIntMin",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b0d",
+          "id_zona": 1,
+          "nombre": "Zona 1",
+          "id_norma": 4,
+          "tipo": "MuroIntMin",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b0e",
+          "id_zona": 2,
+          "nombre": "Zona 2",
+          "id_norma": 4,
+          "tipo": "MuroIntMin",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b0f",
+          "id_zona": 3,
+          "nombre": "Zona 3",
+          "id_norma": 4,
+          "tipo": "MuroIntMin",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b10",
+          "id_zona": 4,
+          "nombre": "Zona 4",
+          "id_norma": 4,
+          "tipo": "MuroIntMin",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b11",
+          "id_zona": 5,
+          "nombre": "Zona 5",
+          "id_norma": 4,
+          "tipo": "MuroIntMin",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b12",
+          "id_zona": 6,
+          "nombre": "Zona 6",
+          "id_norma": 4,
+          "tipo": "MuroIntMin",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b13",
+          "id_zona": 7,
+          "nombre": "Zona 7",
+          "id_norma": 4,
+          "tipo": "MuroIntMin",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b14",
+          "id_zona": 1,
+          "nombre": "Zona 1",
+          "id_norma": 5,
+          "tipo": "MuroIntMin",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b15",
+          "id_zona": 2,
+          "nombre": "Zona 2",
+          "id_norma": 5,
+          "tipo": "MuroIntMin",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b16",
+          "id_zona": 3,
+          "nombre": "Zona 3",
+          "id_norma": 5,
+          "tipo": "MuroIntMin",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b17",
+          "id_zona": 4,
+          "nombre": "Zona 4",
+          "id_norma": 5,
+          "tipo": "MuroIntMin",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b18",
+          "id_zona": 5,
+          "nombre": "Zona 5",
+          "id_norma": 5,
+          "tipo": "MuroIntMin",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b19",
+          "id_zona": 6,
+          "nombre": "Zona 6",
+          "id_norma": 5,
+          "tipo": "MuroIntMin",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b1a",
+          "id_zona": 7,
+          "nombre": "Zona 7",
+          "id_norma": 5,
+          "tipo": "MuroIntMin",
+          "id_producto": 1
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b1b",
+          "id_zona": 1,
+          "nombre": "Zona 1",
+          "id_norma": 1,
+          "tipo": "MuroIntRec",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b1c",
+          "id_zona": 2,
+          "nombre": "Zona 2",
+          "id_norma": 1,
+          "tipo": "MuroIntRec",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b1d",
+          "id_zona": 3,
+          "nombre": "Zona 3",
+          "id_norma": 1,
+          "tipo": "MuroIntRec",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b1e",
+          "id_zona": 4,
+          "nombre": "Zona 4",
+          "id_norma": 1,
+          "tipo": "MuroIntRec",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b1f",
+          "id_zona": 5,
+          "nombre": "Zona 5",
+          "id_norma": 1,
+          "tipo": "MuroIntRec",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b20",
+          "id_zona": 6,
+          "nombre": "Zona 6",
+          "id_norma": 1,
+          "tipo": "MuroIntRec",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b21",
+          "id_zona": 7,
+          "nombre": "Zona 7",
+          "id_norma": 1,
+          "tipo": "MuroIntRec",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b22",
+          "id_zona": 1,
+          "nombre": "Zona 1",
+          "id_norma": 2,
+          "tipo": "MuroIntRec",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b23",
+          "id_zona": 2,
+          "nombre": "Zona 2",
+          "id_norma": 2,
+          "tipo": "MuroIntRec",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b24",
+          "id_zona": 3,
+          "nombre": "Zona 3",
+          "id_norma": 2,
+          "tipo": "MuroIntRec",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b25",
+          "id_zona": 4,
+          "nombre": "Zona 4",
+          "id_norma": 2,
+          "tipo": "MuroIntRec",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b26",
+          "id_zona": 5,
+          "nombre": "Zona 5",
+          "id_norma": 2,
+          "tipo": "MuroIntRec",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b27",
+          "id_zona": 6,
+          "nombre": "Zona 6",
+          "id_norma": 2,
+          "tipo": "MuroIntRec",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b28",
+          "id_zona": 7,
+          "nombre": "Zona 7",
+          "id_norma": 2,
+          "tipo": "MuroIntRec",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b29",
+          "id_zona": 1,
+          "nombre": "Zona 1",
+          "id_norma": 3,
+          "tipo": "MuroIntRec",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b2a",
+          "id_zona": 2,
+          "nombre": "Zona 2",
+          "id_norma": 3,
+          "tipo": "MuroIntRec",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b2b",
+          "id_zona": 3,
+          "nombre": "Zona 3",
+          "id_norma": 3,
+          "tipo": "MuroIntRec",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b2c",
+          "id_zona": 4,
+          "nombre": "Zona 4",
+          "id_norma": 3,
+          "tipo": "MuroIntRec",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b2d",
+          "id_zona": 5,
+          "nombre": "Zona 5",
+          "id_norma": 3,
+          "tipo": "MuroIntRec",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b2e",
+          "id_zona": 6,
+          "nombre": "Zona 6",
+          "id_norma": 3,
+          "tipo": "MuroIntRec",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b2f",
+          "id_zona": 7,
+          "nombre": "Zona 7",
+          "id_norma": 3,
+          "tipo": "MuroIntRec",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b30",
+          "id_zona": 1,
+          "nombre": "Zona 1",
+          "id_norma": 4,
+          "tipo": "MuroIntRec",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b31",
+          "id_zona": 2,
+          "nombre": "Zona 2",
+          "id_norma": 4,
+          "tipo": "MuroIntRec",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b32",
+          "id_zona": 3,
+          "nombre": "Zona 3",
+          "id_norma": 4,
+          "tipo": "MuroIntRec",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b33",
+          "id_zona": 4,
+          "nombre": "Zona 4",
+          "id_norma": 4,
+          "tipo": "MuroIntRec",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b34",
+          "id_zona": 5,
+          "nombre": "Zona 5",
+          "id_norma": 4,
+          "tipo": "MuroIntRec",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b35",
+          "id_zona": 6,
+          "nombre": "Zona 6",
+          "id_norma": 4,
+          "tipo": "MuroIntRec",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b36",
+          "id_zona": 7,
+          "nombre": "Zona 7",
+          "id_norma": 4,
+          "tipo": "MuroIntRec",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b37",
+          "id_zona": 1,
+          "nombre": "Zona 1",
+          "id_norma": 5,
+          "tipo": "MuroIntRec",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b38",
+          "id_zona": 2,
+          "nombre": "Zona 2",
+          "id_norma": 5,
+          "tipo": "MuroIntRec",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b39",
+          "id_zona": 3,
+          "nombre": "Zona 3",
+          "id_norma": 5,
+          "tipo": "MuroIntRec",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b3a",
+          "id_zona": 4,
+          "nombre": "Zona 4",
+          "id_norma": 5,
+          "tipo": "MuroIntRec",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b3b",
+          "id_zona": 5,
+          "nombre": "Zona 5",
+          "id_norma": 5,
+          "tipo": "MuroIntRec",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b3c",
+          "id_zona": 6,
+          "nombre": "Zona 6",
+          "id_norma": 5,
+          "tipo": "MuroIntRec",
+          "id_producto": 4
+     },
+     {
+          "_id": "5adf9772a27b5e6f07735b3d",
+          "id_zona": 7,
+          "nombre": "Zona 7",
+          "id_norma": 5,
+          "tipo": "MuroIntRec",
+          "id_producto": 4
+     }
+]
