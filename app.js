@@ -143,6 +143,44 @@ app.post('/tatributos',function(req, res) {
     });
 });
 
+app.post('/tatributos/all',function(req, res) {
+  if (req.body) {
+
+      let data = req.body
+      for (let i in data) {
+
+          let fields = data[i];
+
+          TAtributos.findOne({ _id: fields._id }, function (err, result) {
+              if (err) {
+                  console.log(err);
+                  res.json({ error: "error interno, inténtelo más tarde" });
+              }
+              else {
+                  if (result) {
+                      res.json({ msg: "atributo ya existe" });
+                  }
+                  else {
+                      TAtributos.create(fields, function (err, rest) {
+                          if (err) {
+                              console.log(err);
+                              res.json({ error: "error interno, inténtelo más tarde" });
+                          }
+                      });
+                  }
+              }
+          });
+
+      }
+
+      res.json({ result: true });
+
+  }
+  else {
+      res.json({ msg: "sin parametros" });
+  }
+});
+
 /*
 * Find t_atributos por parameters
 */
