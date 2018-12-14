@@ -31,13 +31,11 @@ const MONGO_URL = process.env.MONGO_URL || 'mongodb://localhost:27017/prosip';
 //const MONGO_URL = 'mongodb://userprosip:prosip1234@ds163758.mlab.com:63758/prosip';
 
 
-mongo.connect(MONGO_URL, function(err, response){
-    if(err)
-    {
-        console.log( err);
+mongo.connect(MONGO_URL, function (err, response) {
+    if (err) {
+        console.log(err);
     }
-    else
-    {
+    else {
         console.log('Connected to db prosip');
     }
 });
@@ -48,21 +46,19 @@ mongo.connect(MONGO_URL, function(err, response){
 var app = express()
 app.use(cors());
 app.use(bodyParser.json());
-app.use(bodyParser.json({limit:'10mb'}));
-app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.json({ limit: '10mb' }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 /*
 * Find t_zonas por parameters
 */
-app.get('/tzonas', function(req, res) {
+app.get('/tzonas', function (req, res) {
     TZonas.find({}, function (err, result) {
-        if(err)
-        {
+        if (err) {
             console.log(err);
-            res.status(500).json({msg:"error"});
+            res.status(500).json({ msg: "error" });
         }
-        else
-        {
+        else {
             res.json(result);
         }
     });
@@ -112,15 +108,13 @@ app.post('/tzonas/newall', function (req, res) {
 /*
 * Find t_precios por parameters
 */
-app.get('/tprecios',function(req, res) {
+app.get('/tprecios', function (req, res) {
     Materiales.find({}, function (err, result) {
-        if(err)
-        {
+        if (err) {
             console.log(err);
-            res.status(500).json({msg:"error"});
+            res.status(500).json({ msg: "error" });
         }
-        else
-        {
+        else {
             res.json(result);
         }
     });
@@ -129,70 +123,66 @@ app.get('/tprecios',function(req, res) {
 /*
 * Find t_atributos por parameters
 */
-app.post('/tatributos',function(req, res) {
+app.post('/tatributos', function (req, res) {
     TAtributos.find({}, function (err, result) {
-        if(err)
-        {
+        if (err) {
             console.log(err);
-            res.status(500).json({msg:"error"});
+            res.status(500).json({ msg: "error" });
         }
-        else
-        {
+        else {
             res.json(result);
         }
     });
 });
 
-app.post('/tatributos/all',function(req, res) {
-  if (req.body) {
+app.post('/tatributos/all', function (req, res) {
+    if (req.body) {
 
-      let data = req.body
-      for (let i in data) {
+        let data = req.body
+        for (let i in data) {
 
-          let fields = data[i];
+            let fields = data[i];
 
-          TAtributos.findOne({ _id: fields._id }, function (err, result) {
-              if (err) {
-                  console.log(err);
-                  res.json({ error: "error interno, inténtelo más tarde" });
-              }
-              else {
-                  if (result) {
-                      res.json({ msg: "atributo ya existe" });
-                  }
-                  else {
-                      TAtributos.create(fields, function (err, rest) {
-                          if (err) {
-                              console.log(err);
-                              res.json({ error: "error interno, inténtelo más tarde" });
-                          }
-                      });
-                  }
-              }
-          });
+            TAtributos.findOne({ _id: fields._id }, function (err, result) {
+                if (err) {
+                    console.log(err);
+                    res.json({ error: "error interno, inténtelo más tarde" });
+                }
+                else {
+                    if (result) {
+                        res.json({ msg: "atributo ya existe" });
+                    }
+                    else {
+                        TAtributos.create(fields, function (err, rest) {
+                            if (err) {
+                                console.log(err);
+                                res.json({ error: "error interno, inténtelo más tarde" });
+                            }
+                        });
+                    }
+                }
+            });
 
-      }
+        }
 
-      res.json({ result: true });
+        res.json({ result: true });
 
-  }
-  else {
-      res.json({ msg: "sin parametros" });
-  }
+    }
+    else {
+        res.json({ msg: "sin parametros" });
+    }
 });
 
 /*
 * Find t_atributos por parameters
 */
-app.post('/tnormas',function(req, res) {
+app.post('/tnormas', function (req, res) {
     TNormas.find({}, function (err, result) {
-        if(err)
-        {
+        if (err) {
             console.log(err);
-            res.status(500).json({msg:"error"});
+            res.status(500).json({ msg: "error" });
         }
-        else
-        {
+        else {
             res.json(result);
         }
     });
@@ -201,29 +191,24 @@ app.post('/tnormas',function(req, res) {
 /*
 * Created usuario
 */
-app.post('/usuarios/new',function(req, res) {
-    Usuarios.findOne({email:req.body.email}, function (err, result) {
-        if(err)
-        {
+app.post('/usuarios/new', function (req, res) {
+    Usuarios.findOne({ email: req.body.email }, function (err, result) {
+        if (err) {
             console.log(err);
-            res.status(500).json({msg:"error interno, inténtelo más tarde"});
+            res.status(500).json({ msg: "error interno, inténtelo más tarde" });
         }
-        else
-        {
-            if(result)
-            {
-                res.json({msg:"email ya existe"});
+        else {
+            if (result) {
+                res.json({ msg: "email ya existe" });
             }
             else {
                 Usuarios.create(req.body, function (err, rest) {
-                    if(err)
-                    {
+                    if (err) {
                         console.log(err);
-                        res.status(500).json({msg:"error interno, inténtelo más tarde"});
+                        res.status(500).json({ msg: "error interno, inténtelo más tarde" });
                     }
-                    else
-                    {
-                        res.json({result:rest});
+                    else {
+                        res.json({ result: rest });
                     }
                 });
             }
@@ -234,7 +219,7 @@ app.post('/usuarios/new',function(req, res) {
 /*
 * List usuarios for datatables
 */
-app.get('/usuarios/datatable',function(req, res) {
+app.get('/usuarios/datatable', function (req, res) {
 
     /* Send Post Parameters and limit skip pagination */
     // Usuarios.find()
@@ -255,15 +240,13 @@ app.get('/usuarios/datatable',function(req, res) {
     // })
 
     Usuarios.find({}, function (err, result) {
-        if(err)
-        {
+        if (err) {
             console.log(err);
-            res.status(500).json({msg:"error"});
+            res.status(500).json({ msg: "error" });
         }
-        else
-        {
-            let resultDatatables={
-                data:result
+        else {
+            let resultDatatables = {
+                data: result
             };
 
             res.json(resultDatatables);
@@ -275,31 +258,26 @@ app.get('/usuarios/datatable',function(req, res) {
 /*
 * Edit usuario
 */
-app.post('/usuarios/edit',function(req, res) {
+app.post('/usuarios/edit', function (req, res) {
 
-    Usuarios.findOne({email:req.body.email}, function (err, result) {
-        if(err)
-        {
+    Usuarios.findOne({ email: req.body.email }, function (err, result) {
+        if (err) {
             console.log(err);
-            res.status(500).json({msg:"error interno, inténtelo más tarde"});
+            res.status(500).json({ msg: "error interno, inténtelo más tarde" });
         }
-        else
-        {
-            if(result && result._id != req.body.id)
-            {
-                res.json({msg:"email ya existe"});
+        else {
+            if (result && result._id != req.body.id) {
+                res.json({ msg: "email ya existe" });
             }
             else {
                 console.log("update");
-                Usuarios.updateOne({_id: req.body.id},req.body, function (err, resp) {
-                    if(err)
-                    {
+                Usuarios.updateOne({ _id: req.body.id }, req.body, function (err, resp) {
+                    if (err) {
                         console.log(err);
-                        res.status(500).json({msg:"error"});
+                        res.status(500).json({ msg: "error" });
                     }
-                    else
-                    {
-                        res.json({result:req.body});
+                    else {
+                        res.json({ result: req.body });
                     }
                 });
             }
@@ -310,34 +288,42 @@ app.post('/usuarios/edit',function(req, res) {
 /*
 * Delete usuario
 */
-app.post('/usuarios/delete',function(req, res) {
-    Usuarios.deleteOne({_id: req.body.id}, function (err) {
-        if(err)
-        {
+app.post('/usuarios/delete', function (req, res) {
+    Usuarios.deleteOne({ _id: req.body.id }, function (err) {
+        if (err) {
             console.log(err);
-            res.status(500).json({msg:"error"});
+            res.status(500).json({ msg: "error" });
         }
-        else
-        {
+        else {
             res.json("eliminado");
         }
     });
 });
 
+/**
+ * Login usuario
+ */
+
+app.post('/usuario/login', async (req, res) => {
+    let data = req.body
+    const user = await Usuarios.find({ email: data.email, password: data.password });
+    res.json({
+        usuario: user
+    })
+})
+
 /*
 * List clientes for datatables
 */
-app.get('/clientes/datatable',function(req, res) {
+app.get('/clientes/datatable', function (req, res) {
     Clientes.find({}, function (err, result) {
-        if(err)
-        {
+        if (err) {
             console.log(err);
-            res.status(500).json({msg:"error"});
+            res.status(500).json({ msg: "error" });
         }
-        else
-        {
-            let resultDatatables={
-                data:result
+        else {
+            let resultDatatables = {
+                data: result
             };
 
             res.json(resultDatatables);
@@ -349,29 +335,24 @@ app.get('/clientes/datatable',function(req, res) {
 /*
 * Created clientes
 */
-app.post('/clientes/new',function(req, res) {
-    Clientes.findOne({email:req.body.email}, function (err, result) {
-        if(err)
-        {
+app.post('/clientes/new', function (req, res) {
+    Clientes.findOne({ email: req.body.email }, function (err, result) {
+        if (err) {
             console.log(err);
-            res.status(500).json({msg:"error interno, inténtelo más tarde"});
+            res.status(500).json({ msg: "error interno, inténtelo más tarde" });
         }
-        else
-        {
-            if(result)
-            {
-                res.json({msg:"email ya existe"});
+        else {
+            if (result) {
+                res.json({ msg: "email ya existe" });
             }
             else {
                 Clientes.create(req.body, function (err, rest) {
-                    if(err)
-                    {
+                    if (err) {
                         console.log(err);
-                        res.status(500).json({msg:"error interno, inténtelo más tarde"});
+                        res.status(500).json({ msg: "error interno, inténtelo más tarde" });
                     }
-                    else
-                    {
-                        res.json({result:rest});
+                    else {
+                        res.json({ result: rest });
                     }
                 });
             }
@@ -382,29 +363,24 @@ app.post('/clientes/new',function(req, res) {
 /*
 * Edit clientes
 */
-app.post('/clientes/edit',function(req, res) {
-    Clientes.findOne({email:req.body.email}, function (err, result) {
-        if(err)
-        {
+app.post('/clientes/edit', function (req, res) {
+    Clientes.findOne({ email: req.body.email }, function (err, result) {
+        if (err) {
             console.log(err);
-            res.json({error:"error interno, inténtelo más tarde"});
+            res.json({ error: "error interno, inténtelo más tarde" });
         }
-        else
-        {
-            if(result && result._id != req.body.id)
-            {
-                res.json({msg:"email ya existe"});
+        else {
+            if (result && result._id != req.body.id) {
+                res.json({ msg: "email ya existe" });
             }
             else {
-                Clientes.updateOne({_id: req.body.id},req.body, function (err, resp) {
-                    if(err)
-                    {
+                Clientes.updateOne({ _id: req.body.id }, req.body, function (err, resp) {
+                    if (err) {
                         console.log(err);
-                        res.json({error:"error"});
+                        res.json({ error: "error" });
                     }
-                    else
-                    {
-                        res.json({result:req.body});
+                    else {
+                        res.json({ result: req.body });
                     }
                 });
             }
@@ -415,15 +391,13 @@ app.post('/clientes/edit',function(req, res) {
 /*
 * Delete clientes
 */
-app.post('/clientes/delete',function(req, res) {
-    Clientes.deleteOne({_id: req.body.id}, function (err) {
-        if(err)
-        {
+app.post('/clientes/delete', function (req, res) {
+    Clientes.deleteOne({ _id: req.body.id }, function (err) {
+        if (err) {
             console.log(err);
-            res.status(500).json({msg:"error"});
+            res.status(500).json({ msg: "error" });
         }
-        else
-        {
+        else {
             res.json("eliminado");
         }
     });
@@ -432,17 +406,15 @@ app.post('/clientes/delete',function(req, res) {
 /*
 * List proveedores for datatables
 */
-app.get('/proveedores/datatable',function(req, res) {
+app.get('/proveedores/datatable', function (req, res) {
     Proveedores.find({}, function (err, result) {
-        if(err)
-        {
+        if (err) {
             console.log(err);
-            res.status(500).json({msg:"error"});
+            res.status(500).json({ msg: "error" });
         }
-        else
-        {
-            let resultDatatables={
-                data:result
+        else {
+            let resultDatatables = {
+                data: result
             };
 
             res.json(resultDatatables);
@@ -454,16 +426,14 @@ app.get('/proveedores/datatable',function(req, res) {
 /*
 * search proyectos por _id
 */
-app.post('/proveedores/search',function(req, res) {
-    Proveedores.findOne({_id:req.body.id}, function (err, result) {
-        if(err)
-        {
+app.post('/proveedores/search', function (req, res) {
+    Proveedores.findOne({ _id: req.body.id }, function (err, result) {
+        if (err) {
             console.log(err);
-            res.json({error:"error"});
+            res.json({ error: "error" });
         }
-        else
-        {
-            res.json({result:result});
+        else {
+            res.json({ result: result });
         }
     });
 });
@@ -471,68 +441,59 @@ app.post('/proveedores/search',function(req, res) {
 /*
 * Created proveedores
 */
-app.post('/proveedores/new',function(req, res) {
-    if(req.body)
-    {
-        let fields =req.body;
+app.post('/proveedores/new', function (req, res) {
+    if (req.body) {
+        let fields = req.body;
         fields.productos = JSON.parse(req.body.productos);
 
         Proveedores.create(fields, function (err, rest) {
-            if(err)
-            {
+            if (err) {
                 console.log(err);
-                res.json({error:"error interno, inténtelo más tarde"});
+                res.json({ error: "error interno, inténtelo más tarde" });
             }
-            else
-            {
-                res.json({result:rest});
+            else {
+                res.json({ result: rest });
             }
         });
     }
-    else
-    {
-        res.json({msg:"sin parametros"});
+    else {
+        res.json({ msg: "sin parametros" });
     }
 });
 
 /*
 * Edit proveedores
 */
-app.post('/proveedores/edit',function(req, res) {
-    if(req.body)
-    {
-        let fields =req.body;
+app.post('/proveedores/edit', function (req, res) {
+    if (req.body) {
+        let fields = req.body;
         fields.productos = JSON.parse(req.body.productos);
 
-        Proveedores.updateOne({_id: req.body.id},fields, function (err, resp) {
-            if(err)
-            {
+        Proveedores.updateOne({ _id: req.body.id }, fields, function (err, resp) {
+            if (err) {
                 console.log(err);
-                res.json({error:"error"});
+                res.json({ error: "error" });
             }
-            else
-            {
-                res.json({result:req.body});
+            else {
+                res.json({ result: req.body });
             }
         });
     }
     else {
-        res.json({msg:"sin parametros"});
+        res.json({ msg: "sin parametros" });
     }
 });
 
 /*
 * Delete proveedores
 */
-app.post('/proveedores/delete',function(req, res) {
-    Proveedores.deleteOne({_id: req.body.id}, function (err) {
-        if(err)
-        {
+app.post('/proveedores/delete', function (req, res) {
+    Proveedores.deleteOne({ _id: req.body.id }, function (err) {
+        if (err) {
             console.log(err);
-            res.json({error:"error"});
+            res.json({ error: "error" });
         }
-        else
-        {
+        else {
             res.json("eliminado");
         }
     });
@@ -542,15 +503,13 @@ app.post('/proveedores/delete',function(req, res) {
 /*
 * search proyectos por _id
 */
-app.post('/proyectos/search',function(req, res) {
-    Proyectos.findOne({_id:req.body.id}, function (err, result) {
-        if(err)
-        {
+app.post('/proyectos/search', function (req, res) {
+    Proyectos.findOne({ _id: req.body.id }, function (err, result) {
+        if (err) {
             console.log(err);
-            res.status(500).json({msg:"error"});
+            res.status(500).json({ msg: "error" });
         }
-        else
-        {
+        else {
             res.json(result);
         }
     });
@@ -559,18 +518,16 @@ app.post('/proyectos/search',function(req, res) {
 /*
 * List proyectos for datatables
 */
-app.get('/proyectos/list',function(req, res) {
+app.get('/proyectos/list', function (req, res) {
 
-    Proyectos.find({},function (err, result) {
-        if(err)
-        {
+    Proyectos.find({}, function (err, result) {
+        if (err) {
             console.log(err);
-            res.status(500).json({msg:"error"});
+            res.status(500).json({ msg: "error" });
         }
-        else
-        {
-            let resultDatatables={
-                data:result
+        else {
+            let resultDatatables = {
+                data: result
             };
             res.json(resultDatatables);
         }
@@ -580,21 +537,19 @@ app.get('/proyectos/list',function(req, res) {
 /*
 * List proyectos for datatables
 */
-app.get('/proyectos/datatable',function(req, res) {
+app.get('/proyectos/datatable', function (req, res) {
 
     /* Personalizamos las columnas devueltas */
     let selectColumns = '_id nombre_proyecto descripcion nombre_usuario created_at';
 
-    Proyectos.find({},selectColumns,function (err, result) {
-        if(err)
-        {
+    Proyectos.find({}, selectColumns, function (err, result) {
+        if (err) {
             console.log(err);
-            res.status(500).json({msg:"error"});
+            res.status(500).json({ msg: "error" });
         }
-        else
-        {
-            let resultDatatables={
-                data:result
+        else {
+            let resultDatatables = {
+                data: result
             };
             res.json(resultDatatables);
         }
@@ -604,19 +559,17 @@ app.get('/proyectos/datatable',function(req, res) {
 /*
 * Created proyecto
 */
-app.post('/proyectos/new',function(req, res) {
-    let fields =req.body;
+app.post('/proyectos/new', function (req, res) {
+    let fields = req.body;
     fields.object_form = JSON.parse(req.body.object_form);
     fields.object_result = JSON.parse(req.body.object_result);
 
     Proyectos.create(fields, function (err, result) {
-        if(err)
-        {
+        if (err) {
             console.log(err);
-            res.status(500).json({msg:"error"});
+            res.status(500).json({ msg: "error" });
         }
-        else
-        {
+        else {
             res.json(result);
         }
     });
@@ -625,20 +578,18 @@ app.post('/proyectos/new',function(req, res) {
 /*
 * Edit proyecto
 */
-app.post('/proyectos/edit',function(req, res) {
+app.post('/proyectos/edit', function (req, res) {
 
-    let fields =req.body;
+    let fields = req.body;
     fields.object_form = JSON.parse(req.body.object_form);
     fields.object_result = JSON.parse(req.body.object_result);
 
-    Proyectos.updateOne({_id: req.body.id},fields, function (err, result) {
-        if(err)
-        {
+    Proyectos.updateOne({ _id: req.body.id }, fields, function (err, result) {
+        if (err) {
             console.log(err);
-            res.status(500).json({msg:"error"});
+            res.status(500).json({ msg: "error" });
         }
-        else
-        {
+        else {
             res.json(result);
         }
     });
@@ -647,80 +598,71 @@ app.post('/proyectos/edit',function(req, res) {
 /*
 * Edit configuracion cotizacion
 */
-app.post('/proyectos/edit/cotizacion',function(req, res) {
-    if(req.body)
-    {
-        let fields =req.body;
+app.post('/proyectos/edit/cotizacion', function (req, res) {
+    if (req.body) {
+        let fields = req.body;
         fields.object_despacho = JSON.parse(req.body.object_despacho);
         fields.object_instalacion = JSON.parse(req.body.object_instalacion);
         fields.object_cotizacion = JSON.parse(req.body.object_cotizacion);
 
-        Proyectos.updateOne({_id: req.body.id},fields, function (err, resp) {
-            if(err)
-            {
+        Proyectos.updateOne({ _id: req.body.id }, fields, function (err, resp) {
+            if (err) {
                 console.log(err);
-                res.json({error:"error"});
+                res.json({ error: "error" });
             }
-            else
-            {
-                res.json({result:req.body});
+            else {
+                res.json({ result: req.body });
             }
         });
     }
     else {
-        res.json({msg:"sin parametros"});
+        res.json({ msg: "sin parametros" });
     }
 });
 
 /*
 * Edit configuracion cotizacion y descargar pdf
 */
-app.post('/proyectos/edit/cotizacionpdf',function(req, res) {
-    if(req.body)
-    {
-        let fields =req.body;
+app.post('/proyectos/edit/cotizacionpdf', function (req, res) {
+    if (req.body) {
+        let fields = req.body;
         fields.object_despacho = JSON.parse(req.body.object_despacho);
         fields.object_instalacion = JSON.parse(req.body.object_instalacion);
         fields.object_cotizacion = JSON.parse(req.body.object_cotizacion);
 
-        Proyectos.updateOne({_id: req.body.id},fields, function (err, resp) {
-            if(err)
-            {
+        Proyectos.updateOne({ _id: req.body.id }, fields, function (err, resp) {
+            if (err) {
                 console.log(err);
-                res.json({error:"error"});
+                res.json({ error: "error" });
             }
-            else
-            {
-                pdfService.getPdf(fields.object_cotizacion,function(err, result){
-                    if(err)
-                    {
+            else {
+                pdfService.getPdf(fields.object_cotizacion, function (err, result) {
+                    if (err) {
                         console.log(err);
-                        res.json({error:"error"});
+                        res.json({ error: "error" });
                     }
                     else {
-                        res.json({result:result});
+                        res.json({ result: result });
                     }
                 })
             }
         });
     }
     else {
-        res.json({msg:"sin parametros"});
+        res.json({ msg: "sin parametros" });
     }
 });
 
 /*
 * Delete proyecto
 */
-app.post('/proyectos/delete',function(req, res) {
-    Proyectos.deleteOne({_id: req.body.id}, function (err) {
-        if(err)
-        {
+app.post('/proyectos/delete', function (req, res) {
+    Proyectos.deleteOne({ _id: req.body.id }, function (err) {
+        if (err) {
             console.log(err);
-            res.status(500).json({msg:"error"});
+            res.status(500).json({ msg: "error" });
         }
-        else
-        {
+        else {
             res.json("eliminado");
         }
     });
@@ -729,30 +671,25 @@ app.post('/proyectos/delete',function(req, res) {
 /*
 * getUf
 */
-app.get('/uf',function(req, res) {
+app.get('/uf', function (req, res) {
     let date = moment().tz("America/Santiago").format("YYYY-MM-DD");
-    Ufs.findOne({date : date}, function (err, result) {
-        if(err)
-        {
+    Ufs.findOne({ date: date }, function (err, result) {
+        if (err) {
             console.log(err);
-            res.status(500).json({msg:"error"});
+            res.status(500).json({ msg: "error" });
         }
-        else
-        {
-            if(result)
-            {
+        else {
+            if (result) {
                 res.json(parseFloat(result.uf));
             }
             else {
-                request.get({url:'https://mindicador.cl/api',json:true}, function (e, r, result) {
-                    Ufs.create({uf:result.uf.valor,date:date}, function (err, resp) {
-                        if(err)
-                        {
+                request.get({ url: 'https://mindicador.cl/api', json: true }, function (e, r, result) {
+                    Ufs.create({ uf: result.uf.valor, date: date }, function (err, resp) {
+                        if (err) {
                             console.log(err);
-                            res.status(500).json({msg:"error"});
+                            res.status(500).json({ msg: "error" });
                         }
-                        else
-                        {
+                        else {
                             res.json(result.uf.valor);
                         }
                     });
@@ -765,16 +702,14 @@ app.get('/uf',function(req, res) {
 /*
 * Find t_atributos por parameters
 */
-app.post('/materiales/list',function(req, res) {
+app.post('/materiales/list', function (req, res) {
     Materiales.find({}, function (err, result) {
-        if(err)
-        {
+        if (err) {
             console.log(err);
-            res.json({error:"error"});
+            res.json({ error: "error" });
         }
-        else
-        {
-            res.json({result : result});
+        else {
+            res.json({ result: result });
         }
     });
 });
@@ -782,17 +717,15 @@ app.post('/materiales/list',function(req, res) {
 /*
 * List materiales for datatables
 */
-app.get('/materiales/datatable',function(req, res) {
+app.get('/materiales/datatable', function (req, res) {
     Materiales.find({}, function (err, result) {
-        if(err)
-        {
+        if (err) {
             console.log(err);
-            res.status(500).json({msg:"error"});
+            res.status(500).json({ msg: "error" });
         }
-        else
-        {
-            let resultDatatables={
-                data:result
+        else {
+            let resultDatatables = {
+                data: result
             };
 
             res.json(resultDatatables);
@@ -804,43 +737,36 @@ app.get('/materiales/datatable',function(req, res) {
 /*
 * Created materiales
 */
-app.post('/materiales/new',function(req, res) {
-    if(req.body)
-    {
-        let fields=req.body;
-        fields.codigo=fields.codigo.toUpperCase();
+app.post('/materiales/new', function (req, res) {
+    if (req.body) {
+        let fields = req.body;
+        fields.codigo = fields.codigo.toUpperCase();
 
-        Materiales.findOne({codigo:fields.codigo}, function (err, result) {
-            if(err)
-            {
+        Materiales.findOne({ codigo: fields.codigo }, function (err, result) {
+            if (err) {
                 console.log(err);
-                res.json({error:"error interno, inténtelo más tarde"});
+                res.json({ error: "error interno, inténtelo más tarde" });
             }
-            else
-            {
-                if(result)
-                {
-                    res.json({msg:"código ya existe"});
+            else {
+                if (result) {
+                    res.json({ msg: "código ya existe" });
                 }
                 else {
                     Materiales.create(fields, function (err, rest) {
-                        if(err)
-                        {
+                        if (err) {
                             console.log(err);
-                            res.json({error:"error interno, inténtelo más tarde"});
+                            res.json({ error: "error interno, inténtelo más tarde" });
                         }
-                        else
-                        {
-                            res.json({result:rest});
+                        else {
+                            res.json({ result: rest });
                         }
                     });
                 }
             }
         });
     }
-    else
-    {
-        res.json({msg:"sin parametros"});
+    else {
+        res.json({ msg: "sin parametros" });
     }
 });
 
@@ -851,7 +777,7 @@ app.post('/materiales/newall', function (req, res) {
     if (req.body) {
 
         let data = req.body
-        for(let i in data){
+        for (let i in data) {
 
             let fields = data[i];
             fields.codigo = fields.codigo.toUpperCase();
@@ -888,61 +814,52 @@ app.post('/materiales/newall', function (req, res) {
 /*
 * Edit materiales
 */
-app.post('/materiales/edit',function(req, res) {
-    if(req.body)
-    {
-        let fields=req.body;
-        fields.codigo=fields.codigo.toUpperCase();
+app.post('/materiales/edit', function (req, res) {
+    if (req.body) {
+        let fields = req.body;
+        fields.codigo = fields.codigo.toUpperCase();
         console.log(fields);
 
-        Materiales.findOne({codigo:fields.codigo}, function (err, result) {
-            if(err)
-            {
+        Materiales.findOne({ codigo: fields.codigo }, function (err, result) {
+            if (err) {
                 console.log(err);
-                res.json({error:"error interno, inténtelo más tarde"});
+                res.json({ error: "error interno, inténtelo más tarde" });
             }
-            else
-            {
+            else {
 
-                if(result && result._id != fields.id)
-                {
-                    res.json({msg:"código ya existe"});
+                if (result && result._id != fields.id) {
+                    res.json({ msg: "código ya existe" });
                 }
                 else {
-                    Materiales.updateOne({_id: fields.id},fields, function (err, resp) {
-                        if(err)
-                        {
+                    Materiales.updateOne({ _id: fields.id }, fields, function (err, resp) {
+                        if (err) {
                             console.log(err);
-                            res.json({error:"error"});
+                            res.json({ error: "error" });
                         }
-                        else
-                        {
-                            res.json({result:req.body});
+                        else {
+                            res.json({ result: req.body });
                         }
                     });
                 }
             }
         });
     }
-    else
-    {
-        res.json({msg:"sin parametros"});
+    else {
+        res.json({ msg: "sin parametros" });
     }
 });
 
 /*
 * Delete materiales
 */
-app.post('/materiales/delete',function(req, res) {
-    Materiales.deleteOne({_id: req.body.id}, function (err) {
-        if(err)
-        {
+app.post('/materiales/delete', function (req, res) {
+    Materiales.deleteOne({ _id: req.body.id }, function (err) {
+        if (err) {
             console.log(err);
-            res.json({error:"error"});
+            res.json({ error: "error" });
         }
-        else
-        {
-            res.json({result:"eliminado"});
+        else {
+            res.json({ result: "eliminado" });
         }
     });
 });
@@ -950,16 +867,14 @@ app.post('/materiales/delete',function(req, res) {
 /*
 * Busqueda de proveedores que coincidan con código de producto
 */
-app.post('/materiales/search',function(req, res) {
-    Proveedores.find({ productos: { $elemMatch: { codigo: req.body.codigo } } },function (err, result) {
-        if(err)
-        {
+app.post('/materiales/search', function (req, res) {
+    Proveedores.find({ productos: { $elemMatch: { codigo: req.body.codigo } } }, function (err, result) {
+        if (err) {
             console.log(err);
-            res.json({error:"error"});
+            res.json({ error: "error" });
         }
-        else
-        {
-            res.json({result:result});
+        else {
+            res.json({ result: result });
         }
     });
 });
@@ -967,16 +882,14 @@ app.post('/materiales/search',function(req, res) {
 /*
 * list comunas
 */
-app.get('/comunas',function(req, res) {
+app.get('/comunas', function (req, res) {
     Comunas.find({}, function (err, result) {
-        if(err)
-        {
+        if (err) {
             console.log(err);
-            res.json({error:"error"});
+            res.json({ error: "error" });
         }
-        else
-        {
-            res.json({result:result});
+        else {
+            res.json({ result: result });
         }
     });
 });
@@ -984,16 +897,14 @@ app.get('/comunas',function(req, res) {
 /*
 * list kilometros
 */
-app.get('/kilometros',function(req, res) {
+app.get('/kilometros', function (req, res) {
     Kilometros.find({}, function (err, result) {
-        if(err)
-        {
+        if (err) {
             console.log(err);
-            res.json({error:"error"});
+            res.json({ error: "error" });
         }
-        else
-        {
-            res.json({result:result});
+        else {
+            res.json({ result: result });
         }
     });
 });
