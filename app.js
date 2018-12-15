@@ -24,6 +24,7 @@ var Materiales = require('./models/Materiales');
 var Ufs = require('./models/Ufs');
 var Comunas = require('./models/Comunas');
 var Kilometros = require('./models/Kilometros');
+var Sesion = require('./models/Sesion');
 
 const port = process.env.PORT || 8085;
 
@@ -309,6 +310,31 @@ app.post('/usuario/login', async (req, res) => {
     const user = await Usuarios.find({ email: data.email, password: data.password });
     res.json({
         usuario: user
+    })
+})
+
+app.post('/sesion/start', async (req, res) => {
+    const data = new Sesion(req.body);
+    await data.save();
+    res.json({
+        res: true,
+        status: "Sesion guardada",
+        id: data._id
+    });
+})
+
+app.put('/sesion/update/:id', async (req, res) => {
+    await Sesion.findByIdAndUpdate(req.params.id, req.body);
+    res.json({
+        res: true,
+        status: "Sesion actualizada"
+    });
+})
+
+app.get('/sesion/user/:email', async (req, res) => {
+    const sesion = await Sesion.find({ email: req.params.email });
+    res.json({
+        data: sesion
     })
 })
 
