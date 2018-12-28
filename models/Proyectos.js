@@ -4,8 +4,13 @@ var Schema = mongoose.Schema;
 var ProyectosSchema = new Schema({
     id_usuario:String,
     nombre_usuario:String,
+    tipo_usuario: String,
     nombre_proyecto: String,
     descripcion: String,
+    version: String,
+    ubicacion: String,
+    cliente: String,
+    m2: String,
     object_form: Object,
     object_result: Object,
     object_despacho:Object,
