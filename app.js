@@ -334,7 +334,11 @@ app.put('/sesion/update/:id', async (req, res) => {
 app.get('/sesion/user/:email', async (req, res) => {
     const sesion = await Sesion.find({ email: req.params.email });
     res.json({
-        data: sesion
+        data: sesion,
+        dateStart: sesion.dateStart.substring(0,10),
+        dateEnd: sesion.dateEnd.substring(0,10),
+        timeStart: sesion.dateStart.substring(11,19),
+        timeEnd: sesion.dateEnd.substring(11,19)
     })
 })
 
