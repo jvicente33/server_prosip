@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Presupuesto Prosip</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="template-hash" content="ff0b4f896b757160074edefba8cfab3b" />
+
+    <link rel="stylesheet" href="css/template.css" />
+  </head>
+  <body>
+    <div id="container">
+      <div class="invoice-top">
+        <section id="memo">
+          <div class="logo"><img src="img/logo_black.png" alt="prosip" /></div>
+
+          <div class="company-info">
+            <span class="company-name">{company_name}</span>
+
+            <span class="spacer"></span>
+
+            <!--<div>{company_city_zip_state}</div>
+            <div>{company_address}</div>
+            
+
+            <span class="clearfix"></span>-->
+
+            <div>Telefono: +569 56873083</div>
+            <span class="spacer"></span>
+            <div>Correo: ventas@prosip.cl</div>
+            <span class="spacer"></span>
+            <div>Web: https://www.prosip.cl</div>
+          </div>
+        </section>
+
+        <section id="invoice-info">
+          <div>
+            <span>Cotización:</span> <span>Nombre del Proyecto:</span>
+            <span>Modelo o versión:</span> <span>m2:</span>
+            <span>Ubicación:</span>
+          </div>
+
+          <div>
+            <span><strong>PRO PI_150</strong></span>
+            <span><strong>Casa moderna</strong></span>
+            <span><strong>v1.0</strong></span>
+            <span><strong>130</strong></span>
+            <span><strong>Zona 3</strong></span>
+          </div>
+
+          <span class="clearfix"></span>
+
+          <section id="invoice-title-number">
+            <span id="title">PRESUPUESTO</span> <br />
+            <span id="number">#11254</span>
+          </section>
+        </section>
+
+        <section id="client-info">
+          <span id="maxsize"><strong>Cliente</strong></span>
+          <div>
+            <span>Nombre: <strong> Josefa Barros</strong></span>
+          </div>
+
+          <div>
+            <span>Empresa: <strong> Prosip</strong></span>
+          </div>
+
+          <div>
+            <span>Correo: <strong> jbarros@prosip.cl</strong></span>
+          </div>
+
+          <div>
+            <span>UF Referencial: <strong> $ 27.500</strong></span>
+          </div>
+
+          <div>
+            <span>Fecha: <strong> 01/01/2019</strong></span>
+          </div>
+        </section>
+
+        <div class="clearfix"></div>
+      </div>
+
+      <div class="clearfix"></div>
+
+      <div class="invoice-body">
+        <section id="items">
+          <table cellpadding="0" cellspacing="0">
+            <tr>
+              <th></th>
+              <th>Item</th>
+              <th>Exteriores</th>
+              <th>Interiores</th>
+              <th>Antetechos</th>
+              <th>Frotones</th>
+              <th>Losa Base</th>
+              <th>Entrepiso</th>
+              <th>Techo</th>
+              <th>Total</th>
+            </tr>
+
+            <tr>
+              <td>1</td>
+              <td>Muros</td>
+              <td>1.269.658</td>
+              <td>2.325.178</td>
+              <td>656.996</td>
+              <td>1.321.228</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>5.573.060</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Losas</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>4.599.902</td>
+              <td>2.325.178</td>
+              <td></td>
+              <td>6.925.080</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Techos</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>4.767.340</td>
+                <td>4.767.340</td>
+              </tr>
+          </table>
+        </section>
+
+        <!--<section id="sums">
+        
+          <table cellpadding="0" cellspacing="0">
+            <tr>
+              <th>{amount_subtotal_label}</th>
+              <td>{amount_subtotal}</td>
+              <td></td>
+            </tr>
+            
+            <tr data-iterate="tax">
+              <th>{tax_name}</th>
+              <td>{tax_value}</td>
+              <td></td>
+            </tr>
+            
+            <tr class="amount-total">
+              <th>{amount_total_label}</th>
+              <td>{amount_total}</td>
+              <td>
+                <div class="currency">
+                  <span>{currency_label}</span> <span>{currency}</span>
+                </div>
+              </td>
+            </tr>
+        
+            <tr data-hide-on-quote="true">
+              <th>{amount_paid_label}</th>
+              <td>{amount_paid}</td>
+              <td></td>
+            </tr>
+            
+            <tr data-hide-on-quote="true">
+              <th>{amount_due_label}</th>
+              <td>{amount_due}</td>
+              <td></td>
+            </tr>
+            
+          </table>
+          
+        </section>-->
+
+        <div class="clearfix"></div>
+
+        <section id="terms">
+          <span><strong>PLAZOS</strong></span>
+          <div>
+            Diseño estructura SIP: 5 días hábiles propuesta inicial +
+            correcciones.
+          </div>
+          <div>Fabricación y despacho PACK: 15 días hábiles.</div>
+          <br />
+          <hr />
+          <span><strong>CONDICIONES COMERCIALES</strong></span>
+          <div>Valores + IVA.</div>
+          <div>
+            Diseño de estructura SIP: Pago 100% junto a Orden de compra.
+          </div>
+          <div>
+            Pack de Paneles SIP + Materiales de Montaje : Pago 100% junto a
+            Orden de compra.
+          </div>
+          <div>
+            Instalación: Pago 50% junto a Orden de compra / 50% al termino de la
+            instalación.
+          </div>
+          <div>Transferencia bancaria.</div>
+          <div>
+            Tarjetas de crédito bancarias (Webpay con un recargo del 3%).
+          </div>
+          <br />
+          <hr />
+          <span><strong>INFORMACIÓN DE COMPRA Y FACTURACIÓN</strong></span>
+          <div>Razón Social: Proyectasip SpA</div>
+          <div>RUT: 76.510.913-2</div>
+          <div>Alejandro Serani Sur 9477, Vitacura</div>
+          <div>jbarros@prosip.cl</div>
+          <div>Banco Chile. Cuenta Corriente N.º 268 03909 - 07</div>
+        </section>
+
+        <!--<div class="payment-info">
+          <div>{payment_info1}</div>
+          <div>{payment_info2}</div>
+          <div>{payment_info3}</div>
+          <div>{payment_info4}</div>
+          <div>{payment_info5}</div>
+        </div>-->
+      </div>
+    </div>
+
+    <script src="generator/generator.min.js?data=data.js"></script>
+  </body>
+</html>
