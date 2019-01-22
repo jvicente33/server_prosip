@@ -19,12 +19,8 @@ var SesionSchema = new Schema({
      },
      dateStart: Date,
      dateEnd: {
-          type: String,
-          default: 'N'
-     },
-     timeEnd: {
-          type: String,
-          default: 'N'
+          type: Date,
+          default: new Date('1995-08-02')
      }
 });
 

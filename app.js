@@ -308,6 +308,7 @@ app.put('/sesion/update/:id', async (req, res) => {
 
 app.get('/sesion/user/:email', async (req, res) => {
   const sesion = await Sesion.find({ email: req.params.email });
+
   let aux = [];
 
   for (let i in sesion) {
@@ -316,16 +317,16 @@ app.get('/sesion/user/:email', async (req, res) => {
     proa.authDash = sesion[i].authDash;
     proa.authCubicador = sesion[i].authCubicador;
     proa.saveProject = sesion[i].saveProject;
-    proa.dateEnd = sesion[i].dateEnd;
-    proa.timeEnd = sesion[i].timeEnd;
     proa._id = sesion[i]._id;
     proa.email = sesion[i].email;
     proa.cargo = sesion[i].cargo;
     proa.updatedAt = sesion[i].updatedAt;
 
-    let dateaux = sesion[i].updatedAt;
+    let dateaux = sesion[i].dateStart; //--
+    let datenaux = sesion[i].dateEnd; //--
 
     let date = new Date(dateaux);
+    let daten = new Date(datenaux);
 
     proa.timeStart = dateaux.toString().substring(16, 24);
     proa.dateStart = `${
@@ -333,6 +334,20 @@ app.get('/sesion/user/:email', async (req, res) => {
     }-${
       date.getMonth() + 1 > 9 ? date.getMonth() + 1 : `0${date.getMonth() + 1}`
     }-${date.getFullYear()}`;
+
+    let aa = new Date('1995-08-02').toString()
+    if(daten.toString() != aa){
+      
+      proa.timeEnd = datenaux.toString().substring(16, 24);
+      proa.dateEnd = `${
+        daten.getDate() > 9 ? daten.getDate() : `0${daten.getDate()}`
+      }-${
+        daten.getMonth() + 1 > 9 ? daten.getMonth() + 1 : `0${daten.getMonth() + 1}`
+      }-${daten.getFullYear()}`;
+    }else{
+      proa.dateEnd = '--'
+      proa.timeEnd = '--'
+    }
 
     aux.push(proa);
   }
