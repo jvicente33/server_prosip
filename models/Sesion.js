@@ -18,7 +18,14 @@ var SesionSchema = new Schema({
           default: 'N'
      },
      dateStart: Date,
-     dateEnd: Date
+     dateEnd: {
+          type: String,
+          default: 'N'
+     },
+     timeEnd: {
+          type: String,
+          default: 'N'
+     }
 });
 
 SesionSchema.plugin(timestamp);
