@@ -308,22 +308,37 @@ app.put('/sesion/update/:id', async (req, res) => {
 
 app.get('/sesion/user/:email', async (req, res) => {
   const sesion = await Sesion.find({ email: req.params.email });
+  let aux = [];
 
-  date = new Date(sesion[0].dateStart);
+  for (let i in sesion) {
+    let proa = {};
+
+    proa.authDash = sesion[i].authDash;
+    proa.authCubicador = sesion[i].authCubicador;
+    proa.saveProject = sesion[i].saveProject;
+    proa.dateEnd = sesion[i].dateEnd;
+    proa.timeEnd = sesion[i].timeEnd;
+    proa._id = sesion[i]._id;
+    proa.email = sesion[i].email;
+    proa.cargo = sesion[i].cargo;
+    proa.updatedAt = sesion[i].updatedAt;
+
+    let dateaux = sesion[i].updatedAt;
+
+    let date = new Date(dateaux);
+
+    proa.timeStart = dateaux.toString().substring(16, 24);
+    proa.dateStart = `${
+      date.getDate() > 9 ? date.getDate() : `0${date.getDate()}`
+    }-${
+      date.getMonth() + 1 > 9 ? date.getMonth() + 1 : `0${date.getMonth() + 1}`
+    }-${date.getFullYear()}`;
+
+    aux.push(proa);
+  }
+
   res.json({
-    data: sesion,
-    date: {
-      dateStart: `${
-        date.getDate() > 9 ? date.getDate() : `0${date.getDate()}`
-      }-${
-        date.getMonth() + 1 > 9
-          ? date.getMonth() + 1
-          : `0${date.getMonth() + 1}`
-      }-${date.getFullYear()}`,
-      dateEnd: sesion[0].dateEnd,
-      timeStart: sesion[0].updatedAt.toString().substring(16,24),
-      timeEnd: sesion[0].timeEnd
-    }
+    data: aux
   });
 });
 
