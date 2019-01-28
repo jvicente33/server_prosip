@@ -8,12 +8,16 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
+    "ejs": "^2.6.1",
     "express": "^4.16.3",
     "moment": "^2.22.2",
     "moment-timezone": "^0.5.17",
     "mongoose": "^5.0.16",
     "mongoose-timestamp": "^0.6.0",
+    "nodemailer": "^5.1.1",
+    "nodemailer-smtp-transport": "^2.7.4",
     "pdfmake": "^0.1.38",
-    "request": "^2.87.0"
+    "request": "^2.87.0",
+    "vue": "^2.5.22"
   }
 }

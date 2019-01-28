@@ -906,6 +906,29 @@ app.get('/kilometros', function(req, res) {
   });
 });
 
+app.get('/generate/presupuesto/:id', async function(req, res){
+  
+  const fs = require('fs')
+
+  const content = `
+  let proa = 'Holis';
+  document.getElementById('title_app').innerHTML = proa;`
+
+  await fs.writeFile('./template/js/main.js', content, (err) => {
+    if (err) {
+      console.error(err)
+      return
+    }
+    console.log('Good!')
+  })
+
+
+  await res.redirect('/presupuesto')
+})
+
+app.use('/presupuesto', express.static(__dirname + '/template'));
+
+
 /*
  * Run Server
  */
