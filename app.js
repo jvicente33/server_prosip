@@ -25,6 +25,7 @@ var Ufs = require('./models/Ufs');
 var Comunas = require('./models/Comunas');
 var Kilometros = require('./models/Kilometros');
 var Sesion = require('./models/Sesion');
+var Cotizacion = require('./models/Cotizacion');
 
 const port = process.env.PORT || 8085;
 
@@ -928,11 +929,80 @@ app.get('/generate/presupuesto/:id', async function(req, res){
 
 app.use('/presupuesto', express.static(__dirname + '/template'));
 
-app.post('/proa/proa', (req, res ) => {
-  res.json({
-    message: 'Aprobado',
-    res: true
-  })
+app.post('/cotizacion/new', async (req, res ) => {
+  let data = req.body
+  let date = new Date()
+
+  //Cliente
+  try {
+    let cliente = await Clientes.findOne({_id: data.project.cliente})  
+  } catch (error) {
+    console.log(error)
+  }
+
+  //Materiales
+  try {
+    let materiales = await Materiales.find()
+  } catch (error) {
+    console.log(error)
+  }
+
+
+  let cotizacion = {
+    cliente: cliente.nombre_contacto,
+    email: cliente.email,
+    empresa: cliente.empresa,
+    uf: '$ 1.000',
+    fecha: date,
+    cotizacion: date.getTime(),
+    nombre_proyecto: data.project.nombre_proyecto,
+    version: data.project.version,
+    ubicacion: data.project.ubicacion,
+    zona: data.zona,
+    m2: data.project.m2,
+    items: [
+        {
+            nombre: '',
+            cant: '',
+            unit: '',
+            subtotal: ''
+        }
+    ],
+    total_sip: '',
+    ufm2sip: '',
+    total_comp: '',
+    ufm2comp: '',
+    total_neto: '',
+    ufm2neto: '',
+    iva: '',
+    totalciva: '',
+    ufm2civa: ''
+  }
+  let items = data.namecant
+
+  for (i in items){
+    for (j in cotizacion.items){
+      if(items[i].name == cotizacion.items[j].nombre){
+        let aux = {
+          nombre: items[i].name,
+          cant: items[i].cant,
+          unit: materiales.find(k => k.nombre == aux.nombre).promedio,
+          subtotal: this.unit * this.cant
+        }
+        cotizacion.items[j].cant += aux.cant
+        cotizacion.items[j].subtotal = cotizacion.items[j].subtotal + aux.subtotal
+      }else{
+        let aux = {
+          nombre: items[i].name,
+          cant: items[i].cant,
+          unit: materiales.find(k => k.nombre == aux.nombre).promedio,
+          subtotal: this.unit * this.cant
+        }
+        cotizacion.items.push(aux)
+      }
+    }
+  }
+
 })
 
 
