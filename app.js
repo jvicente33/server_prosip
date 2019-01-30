@@ -928,6 +928,13 @@ app.get('/generate/presupuesto/:id', async function(req, res){
 
 app.use('/presupuesto', express.static(__dirname + '/template'));
 
+app.post('/proa/proa', (req, res ) => {
+  res.json({
+    message: 'Aprobado',
+    res: true
+  })
+})
+
 
 /*
  * Run Server
