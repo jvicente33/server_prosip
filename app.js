@@ -8,6 +8,7 @@ var mongo = require('mongoose');
 var request = require('request');
 var async = require('async');
 var pdfService = require('./services/pdf');
+let axios = require('axios');
 
 /*
  * Modelos
@@ -336,18 +337,19 @@ app.get('/sesion/user/:email', async (req, res) => {
       date.getMonth() + 1 > 9 ? date.getMonth() + 1 : `0${date.getMonth() + 1}`
     }-${date.getFullYear()}`;
 
-    let aa = new Date('1995-08-02').toString()
-    if(daten.toString() != aa){
-      
+    let aa = new Date('1995-08-02').toString();
+    if (daten.toString() != aa) {
       proa.timeEnd = datenaux.toString().substring(16, 24);
       proa.dateEnd = `${
         daten.getDate() > 9 ? daten.getDate() : `0${daten.getDate()}`
       }-${
-        daten.getMonth() + 1 > 9 ? daten.getMonth() + 1 : `0${daten.getMonth() + 1}`
+        daten.getMonth() + 1 > 9
+          ? daten.getMonth() + 1
+          : `0${daten.getMonth() + 1}`
       }-${daten.getFullYear()}`;
-    }else{
-      proa.dateEnd = '--'
-      proa.timeEnd = '--'
+    } else {
+      proa.dateEnd = '--';
+      proa.timeEnd = '--';
     }
 
     aux.push(proa);
@@ -907,182 +909,206 @@ app.get('/kilometros', function(req, res) {
   });
 });
 
-app.get('/generate/presupuesto/:id', async function(req, res){
-  
-  const fs = require('fs')
+app.get('/generate/presupuesto/:id', async function(req, res) {
+  const fs = require('fs');
 
   const content = `
   let proa = 'Holis';
-  document.getElementById('title_app').innerHTML = proa;`
+  document.getElementById('title_app').innerHTML = proa;`;
 
-  await fs.writeFile('./template/js/main.js', content, (err) => {
+  await fs.writeFile('./template/js/main.js', content, err => {
     if (err) {
-      console.error(err)
-      return
+      console.error(err);
+      return;
     }
-    console.log('Good!')
-  })
+    console.log('Good!');
+  });
 
-
-  await res.redirect('/presupuesto')
-})
+  await res.redirect('/presupuesto');
+});
 
 app.use('/presupuesto', express.static(__dirname + '/template'));
 
-app.post('/cotizacion/new', async (req, res ) => {
-  let data = req.body
-  let date = new Date()
+async function getUf() {
+  await request.get(
+    { url: 'https://mindicador.cl/api', json: true },
+    (error, r, result) => {
+      if (error) console.log(error);
+      console.log(result.uf.valor);
+      return result.uf.valor;
+    }
+  );
+}
 
-  console.log(`Recibiendo en body`)
-  for (i in data.namecant){
-    data.namecant[i].name = data.namecant[i].name.replace(/\\/, '')
-  }
-  console.log(data)
+app.post('/cotizacion/new', async (req, res) => {
+  let data = req.body;
+  let dateCl = moment()
+    .tz('America/Santiago')
+    .format('YYYY-MM-DD');
+  let date = new Date();
+
+  console.log(`Recibiendo en body`);
+  console.log(data);
 
   //Cliente
-  let cliente = null
+  let cliente = null;
   try {
-    //cliente = await Clientes.findOne({_id: data.project.cliente})  
-    console.log('Buscando cliente')
-    cliente = await Clientes.findById(data.project.cliente)
-    console.log(cliente)
+    console.log('Buscando cliente');
+    cliente = await Clientes.findById(data.project.cliente);
+    console.log(cliente);
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-
-  /*Clientes.findOne({ _id: data.project.cliente}, function (err, rescliente) {
-    if (err) {
-      console.log(err);
-      res.json({ error: 'error interno, inténtelo más tarde' });
-    }
-    console.log(rescliente)
-    res.json({
-      good: 'OK'
-    })
-  });*/
-
 
   //Materiales
-  let materiales = null
+  let materiales = null;
   try {
-    console.log('Buscando materiales')
-    materiales = await Materiales.find()
-    if(materiales) console.log('materiales encontrados')
+    console.log('Buscando materiales');
+    materiales = await Materiales.find();
+    if (materiales) console.log('materiales encontrados');
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 
-  
-  let cotizacion = {
-    cliente: cliente.nombre_contacto,
-    email: cliente.email,
-    empresa: cliente.empresa,
-    uf: '$ 1.000',
-    fecha: date,
-    cotizacion: date.getTime(),
-    nombre_proyecto: data.project.nombre_proyecto,
-    version: data.project.version,
-    ubicacion: data.project.ubicacion,
-    zona: data.zona,
-    m2: data.project.m2,
-    items: [],
-    total_sip: '',
-    ufm2sip: '',
-    total_comp: '',
-    ufm2comp: '',
-    total_neto: '',
-    ufm2neto: '',
-    iva: '',
-    totalciva: '',
-    ufm2civa: ''
-  }
-  let items = data.namecant
-
-  console.log('Organizando items')
-  for (i in items){
-    
-    let isTrue = null
-    let op = await cotizacion.items.find(async (element, index) => {
-      /*console.log('Comparando')
-      console.log(items[i])
-      console.log(element)*/
-      if (items[i].name.localeCompare(element.nombre) === 0){
-
-        console.log(`Index --> ${index}`)
-
-        let nombre = items[i].name
-        let cant = items[i].cant
-        let unit = await materiales.find(k => k.nombre == nombre).promedio
-        let subtotal = cant * unit
-        console.log('Flujo nro. 1')
-        console.log(`${nombre}|${cant}|${unit}|${subtotal}`)
-        cotizacion.items[index].cant = cotizacion.items[index].cant + cant
-        cotizacion.items[index].subtotal = cotizacion.items[index].subtotal + subtotal
-
-        console.log(cotizacion.items[index])
-
-        isTrue = index
-        return index
+  await request.get(
+    { url: 'https://mindicador.cl/api', json: true },
+    async (error, r, result) => {
+      if (error) {
+        console.log(error);
+        res.json({
+          res: false,
+          message: 'Error interno'
+        });
       }
-      /*console.log('-------------')
-      console.log(items[i].name)
-      console.log(element.nombre)
-      console.log('-------------')*/
-      isTrue = false
-    })
+      
+      console.log('Buscando valor de UF');
+      console.log(`UF >>> ${result.uf.valor}`);
 
-    console.log(`Index --> ${isTrue}`)
+      let cotizacion = {
+        cliente: cliente.nombre_contacto,
+        email: cliente.email,
+        empresa: cliente.empresa,
+        uf: parseInt(result.uf.valor),
+        fecha: dateCl,
+        cotizacion: date.getTime(),
+        nombre_proyecto: data.project.nombre_proyecto,
+        version: data.project.version,
+        ubicacion: data.project.ubicacion,
+        zona: data.zona,
+        m2: parseInt(data.project.m2),
+        items: [],
+        total_sip: 0,
+        ufm2sip: 0,
+        total_comp: 0,
+        ufm2comp: 0,
+        total_neto: 0,
+        ufm2neto: 0,
+        iva: 0,
+        totalciva: 0,
+        ufm2civa: 0
+      };
+      let items = data.namecant;
 
-    if(isTrue === 0){
-      isTrue = true
-    }else if(isTrue === null){
-      isTrue = false
-    }
+      console.log('Organizando items');
+      for (i in items) {
+        let isTrue = false;
+        let op = false;
+        let index = null;
 
-    if(isTrue === false){
-      let nombre = items[i].name
-      let cant = items[i].cant
-      let unit = await materiales.find(k => k.nombre == nombre).promedio
-      let subtotal = cant * unit
-      let aux = {
-        nombre,
-        cant,
-        unit,
-        subtotal
+        for (j in cotizacion.items) {
+          if (items[i].name.localeCompare(cotizacion.items[j].nombre) === 0) {
+            if (op === false) {
+              isTrue = true;
+              index = j;
+              op = true;
+            }
+          }
+        }
+
+        console.log(`Index --> ${index}`);
+
+        if (isTrue === true) {
+          console.log(`Index --> ${isTrue}`);
+
+          let nombre = items[i].name;
+          let cant = items[i].cant;
+          let unit = await materiales.find(k => k.nombre == nombre).promedio;
+          let subtotal = cant * unit;
+          console.log('Flujo nro. 1');
+          console.log(`${nombre}|${cant}|${unit}|${subtotal}`);
+          cotizacion.items[index].cant = cotizacion.items[index].cant + cant;
+          cotizacion.items[index].subtotal =
+            cotizacion.items[index].subtotal + subtotal;
+
+          console.log(cotizacion.items[index]);
+        } else if (isTrue === false) {
+          let nombre = items[i].name;
+          let cant = items[i].cant;
+          let unit = await materiales.find(k => k.nombre == nombre).promedio;
+          let subtotal = cant * unit;
+          let aux = {
+            nombre,
+            cant,
+            unit,
+            subtotal
+          };
+          console.log('Flujo nro. 2');
+          console.log(aux);
+          cotizacion.items.push(aux);
+        }
+
+        console.log();
+        console.log();
+        console.log();
+        console.log();
       }
-      console.log('Flujo nro. 2')
-      console.log(aux)
-      cotizacion.items.push(aux)
+
+
+
+      for (i in cotizacion.items){
+
+        for (j in materiales) {
+          if (materiales[j].nombre.localeCompare(cotizacion.items[i].nombre) === 0) {
+            if(materiales[j].elemento == 'Panel'){
+              cotizacion.total_sip = cotizacion.total_sip + cotizacion.items[i].subtotal
+            }
+            if(materiales[j].elemento == 'Fijacion'){
+              cotizacion.total_comp = cotizacion.total_comp + cotizacion.items[i].subtotal
+            }
+            if(materiales[j].elemento == 'Madera'){
+              cotizacion.total_comp = cotizacion.total_comp + cotizacion.items[i].subtotal
+            }
+          }
+        }
+
+      }
+
+      cotizacion.ufm2sip = cotizacion.total_sip / cotizacion.uf / cotizacion.m2;
+      cotizacion.ufm2comp = cotizacion.total_comp / cotizacion.uf / cotizacion.m2;
+      cotizacion.total_neto = cotizacion.total_sip + cotizacion.total_comp
+      cotizacion.ufm2neto = cotizacion.ufm2sip + cotizacion.ufm2comp
+      cotizacion.iva = cotizacion.total_neto * 0.19
+      cotizacion.totalciva = cotizacion.total_neto + cotizacion.iva
+
+      //console.log(cotizacion.items)
+      const cot = new Cotizacion(cotizacion);
+      try {
+        let resp = await cot.save();
+        console.log('Guardado con exito');
+        res.json({
+          message: 'Guardado con exito',
+          res: true
+        });
+      } catch (error) {
+        console.log(error);
+        res.json({
+          message: 'No se guardo',
+          res: false
+        });
+      }
     }
-
-    console.log()
-    console.log()
-    console.log()
-    console.log()
-
-
-  }
-  //console.log(cotizacion.items)
-  const cot = new Cotizacion(cotizacion);
-  try {
-    let resp = await cot.save();  
-    console.log('Guardado con exito')
-    res.json({
-      message: 'Guardado con exito',
-      res: true
-    })
-  } catch (error) {
-    console.log(error)
-    res.json({
-      message: 'No se guardo',
-      res: false
-    })
-  }
-  
-  
-
-})
-
+  );
+});
 
 /*
  * Run Server
