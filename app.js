@@ -933,21 +933,46 @@ app.post('/cotizacion/new', async (req, res ) => {
   let data = req.body
   let date = new Date()
 
+  console.log(`Recibiendo en body`)
+  for (i in data.namecant){
+    data.namecant[i].name = data.namecant[i].name.replace(/\\/, '')
+  }
+  console.log(data)
+
   //Cliente
+  let cliente = null
   try {
-    let cliente = await Clientes.findOne({_id: data.project.cliente})  
+    //cliente = await Clientes.findOne({_id: data.project.cliente})  
+    console.log('Buscando cliente')
+    cliente = await Clientes.findById(data.project.cliente)
+    console.log(cliente)
   } catch (error) {
     console.log(error)
   }
+
+  /*Clientes.findOne({ _id: data.project.cliente}, function (err, rescliente) {
+    if (err) {
+      console.log(err);
+      res.json({ error: 'error interno, inténtelo más tarde' });
+    }
+    console.log(rescliente)
+    res.json({
+      good: 'OK'
+    })
+  });*/
+
 
   //Materiales
+  let materiales = null
   try {
-    let materiales = await Materiales.find()
+    console.log('Buscando materiales')
+    materiales = await Materiales.find()
+    if(materiales) console.log('materiales encontrados')
   } catch (error) {
     console.log(error)
   }
 
-
+  
   let cotizacion = {
     cliente: cliente.nombre_contacto,
     email: cliente.email,
@@ -960,14 +985,7 @@ app.post('/cotizacion/new', async (req, res ) => {
     ubicacion: data.project.ubicacion,
     zona: data.zona,
     m2: data.project.m2,
-    items: [
-        {
-            nombre: '',
-            cant: '',
-            unit: '',
-            subtotal: ''
-        }
-    ],
+    items: [],
     total_sip: '',
     ufm2sip: '',
     total_comp: '',
@@ -980,28 +998,88 @@ app.post('/cotizacion/new', async (req, res ) => {
   }
   let items = data.namecant
 
+  console.log('Organizando items')
   for (i in items){
-    for (j in cotizacion.items){
-      if(items[i].name == cotizacion.items[j].nombre){
-        let aux = {
-          nombre: items[i].name,
-          cant: items[i].cant,
-          unit: materiales.find(k => k.nombre == aux.nombre).promedio,
-          subtotal: this.unit * this.cant
-        }
-        cotizacion.items[j].cant += aux.cant
-        cotizacion.items[j].subtotal = cotizacion.items[j].subtotal + aux.subtotal
-      }else{
-        let aux = {
-          nombre: items[i].name,
-          cant: items[i].cant,
-          unit: materiales.find(k => k.nombre == aux.nombre).promedio,
-          subtotal: this.unit * this.cant
-        }
-        cotizacion.items.push(aux)
+    
+    let isTrue = null
+    let op = await cotizacion.items.find(async (element, index) => {
+      /*console.log('Comparando')
+      console.log(items[i])
+      console.log(element)*/
+      if (items[i].name.localeCompare(element.nombre) === 0){
+
+        console.log(`Index --> ${index}`)
+
+        let nombre = items[i].name
+        let cant = items[i].cant
+        let unit = await materiales.find(k => k.nombre == nombre).promedio
+        let subtotal = cant * unit
+        console.log('Flujo nro. 1')
+        console.log(`${nombre}|${cant}|${unit}|${subtotal}`)
+        cotizacion.items[index].cant = cotizacion.items[index].cant + cant
+        cotizacion.items[index].subtotal = cotizacion.items[index].subtotal + subtotal
+
+        console.log(cotizacion.items[index])
+
+        isTrue = index
+        return index
       }
+      /*console.log('-------------')
+      console.log(items[i].name)
+      console.log(element.nombre)
+      console.log('-------------')*/
+      isTrue = false
+    })
+
+    console.log(`Index --> ${isTrue}`)
+
+    if(isTrue === 0){
+      isTrue = true
+    }else if(isTrue === null){
+      isTrue = false
     }
+
+    if(isTrue === false){
+      let nombre = items[i].name
+      let cant = items[i].cant
+      let unit = await materiales.find(k => k.nombre == nombre).promedio
+      let subtotal = cant * unit
+      let aux = {
+        nombre,
+        cant,
+        unit,
+        subtotal
+      }
+      console.log('Flujo nro. 2')
+      console.log(aux)
+      cotizacion.items.push(aux)
+    }
+
+    console.log()
+    console.log()
+    console.log()
+    console.log()
+
+
   }
+  //console.log(cotizacion.items)
+  const cot = new Cotizacion(cotizacion);
+  try {
+    let resp = await cot.save();  
+    console.log('Guardado con exito')
+    res.json({
+      message: 'Guardado con exito',
+      res: true
+    })
+  } catch (error) {
+    console.log(error)
+    res.json({
+      message: 'No se guardo',
+      res: false
+    })
+  }
+  
+  
 
 })
 
