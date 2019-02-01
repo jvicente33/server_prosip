@@ -6,7 +6,7 @@ var CotizacionSchema = new Schema({
     email: String,
     empresa: String,
     uf: Number,
-    fecha: Date,
+    fecha: String,
     cotizacion: String,
     nombre_proyecto: String,
     version: String,
