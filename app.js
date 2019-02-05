@@ -1091,16 +1091,16 @@ function round(value, decimals) {
   return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);
 }
 
-async function sendEmail(email, namecotz, idcotz, isEdit, ubicacion) {
+async function sendEmail(email, namecotz, idcotz, isEdit, ubicacion, nameclient) {
 
   let account = await nodemailer.createTestAccount();
 
   /**
-   * @param idcliente 720457448691-8ijujf2f4h2covdupk7fg9psqmfm3fq6.apps.googleusercontent.com
-   * @param idsecret D0lF2_uLsKcGfSFh3Ua4bR1r
-   * @param accessToken ya29.GlunBhMe2UERvNzMC_dG1ZJZbyXyfvjtmuivND6jUM9qziRonE4PD5QXLyOdp0EAg4NLAGXoPJGj3VI47qZO7KBX2aWU2bjvvZci9WDy1xSQO0xPAYmjfOD17EMp
-   * @param refreshToken 1/1NW2qENovysow1lKldfjTyIdWZPnBppZqO7HU3MQle8
-   */
+  * @param idcliente 720457448691-8ijujf2f4h2covdupk7fg9psqmfm3fq6.apps.googleusercontent.com
+  * @param idsecret D0lF2_uLsKcGfSFh3Ua4bR1r
+  * @param accessToken ya29.GlunBgfHPCqsp9eqy1bO7_gjfVsNE4vShcJuMGqTAcv185z2rRcLaALP90peOcA0AWIP4cYWypFEToFbvaMuA3ctiYQiRU8GPmKaqRPARCHVZQEwpHZ_U5-oDd5v
+  * @param refreshToken 1/Si156a-Ncsvq4NAHt4ZJPd1YpxOTz2phN66u-9QZcXg
+  */
 
   // create reusable transporter object using the default SMTP transport
   /*let transporter = nodemailer.createTransport({
@@ -1121,11 +1121,11 @@ async function sendEmail(email, namecotz, idcotz, isEdit, ubicacion) {
     secure: true,
     auth: {
       type: 'OAuth2',
-      user: 'jvectronic@gmail.com',
+      user: 'cubicador@prosip.cl',
       clientId: '720457448691-8ijujf2f4h2covdupk7fg9psqmfm3fq6.apps.googleusercontent.com',
       clientSecret: 'D0lF2_uLsKcGfSFh3Ua4bR1r',
-      refreshToken: '1/1NW2qENovysow1lKldfjTyIdWZPnBppZqO7HU3MQle8',
-      accessToken: 'ya29.GlunBhMe2UERvNzMC_dG1ZJZbyXyfvjtmuivND6jUM9qziRonE4PD5QXLyOdp0EAg4NLAGXoPJGj3VI47qZO7KBX2aWU2bjvvZci9WDy1xSQO0xPAYmjfOD17EMp',
+      refreshToken: '1/Si156a-Ncsvq4NAHt4ZJPd1YpxOTz2phN66u-9QZcXg',
+      accessToken: 'ya29.GlunBgfHPCqsp9eqy1bO7_gjfVsNE4vShcJuMGqTAcv185z2rRcLaALP90peOcA0AWIP4cYWypFEToFbvaMuA3ctiYQiRU8GPmKaqRPARCHVZQEwpHZ_U5-oDd5v',
       expires: 1484314697598
     }
   });
@@ -1140,10 +1140,10 @@ async function sendEmail(email, namecotz, idcotz, isEdit, ubicacion) {
 
 
   let temphtml = `
-     <p>Hola Juan Ramon Perez, </p>
-     <p>En el siguiente enlace <a href="https://api.prosip.cl/generate/cotizacion/${idcotz}">PDF</a> encontrarás <br>
-     Presupuesto PROSIP Nº ${idcotz}  correspondiente a proyecto "${namecotz}", ubicado en ${ubicacion}.</p>
-     <p>Para completar tu pedido cotiza <a href="https://www.prosip.cl/w.despacho.html">DESPACHO</a> y compra directo en nuestra <a href="https://www.prosip.cl/tienda">TIENDA</a> <br>
+     <p>Hola ${nameclient}, </p>
+     <p>En el siguiente enlace >> <a href="https://api.prosip.cl/generate/cotizacion/${idcotz}">PDF</a> << encontrarás el
+     Presupuesto PROSIP Nº ${idcotz}, correspondiente al proyecto "${namecotz}", ubicado en ${ubicacion}.</p>
+     <p>Para completar tu pedido cotiza <a href="https://www.prosip.cl/w.despacho.html">DESPACHO</a> y compra directo en nuestra <a href="https://www.prosip.cl/tienda">TIENDA</a>.<br>
      Con PROSIP, este proyecto estará instalado en pocos días. Cotiza <a href="https://www.prosip.cl/w.instalacion.html">INSTALACIÓN</a> aquí.</p>
 
      <p>Presupuesto generado automáticamente por CUBICADOR PROSIP, no garantiza volumen optimizado de Paneles ni incluye planos de montaje. 
@@ -1410,7 +1410,7 @@ app.post('/cotizacion/new/:idproject', async (req, res) => {
 
         let resemail = null
         try {
-          resemail = await sendEmail(cotizacion.email, cotizacion.nombre_proyecto, cotizacion.cotizacion, isEdit, cotizacion.ubicacion)
+          resemail = await sendEmail(cotizacion.email, cotizacion.nombre_proyecto, cotizacion.cotizacion, isEdit, cotizacion.ubicacion, cotizacion.cliente)
         } catch (error) {
           console.log(error)
           res.status(401).json({

@@ -22,17 +22,24 @@ async function main() {
           }
      });*/
 
+     /**
+      * @param idcliente 720457448691-8ijujf2f4h2covdupk7fg9psqmfm3fq6.apps.googleusercontent.com
+      * @param idsecret D0lF2_uLsKcGfSFh3Ua4bR1r
+      * @param accessToken ya29.GlunBgfHPCqsp9eqy1bO7_gjfVsNE4vShcJuMGqTAcv185z2rRcLaALP90peOcA0AWIP4cYWypFEToFbvaMuA3ctiYQiRU8GPmKaqRPARCHVZQEwpHZ_U5-oDd5v
+      * @param refreshToken 1/Si156a-Ncsvq4NAHt4ZJPd1YpxOTz2phN66u-9QZcXg
+      */
+
      let transporter = nodemailer.createTransport({
           host: 'smtp.gmail.com',
           port: 465,
           secure: true,
           auth: {
                type: 'OAuth2',
-               user: 'jvectronic@gmail.com',
+               user: 'cubicador@prosip.cl',
                clientId: '720457448691-8ijujf2f4h2covdupk7fg9psqmfm3fq6.apps.googleusercontent.com',
                clientSecret: 'D0lF2_uLsKcGfSFh3Ua4bR1r',
-               refreshToken: '1/1NW2qENovysow1lKldfjTyIdWZPnBppZqO7HU3MQle8',
-               accessToken: 'ya29.GlunBhMe2UERvNzMC_dG1ZJZbyXyfvjtmuivND6jUM9qziRonE4PD5QXLyOdp0EAg4NLAGXoPJGj3VI47qZO7KBX2aWU2bjvvZci9WDy1xSQO0xPAYmjfOD17EMp',
+               refreshToken: '1/Si156a-Ncsvq4NAHt4ZJPd1YpxOTz2phN66u-9QZcXg',
+               accessToken: 'ya29.GlunBgfHPCqsp9eqy1bO7_gjfVsNE4vShcJuMGqTAcv185z2rRcLaALP90peOcA0AWIP4cYWypFEToFbvaMuA3ctiYQiRU8GPmKaqRPARCHVZQEwpHZ_U5-oDd5v',
                expires: 1484314697598
           }
      });
