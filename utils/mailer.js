@@ -10,7 +10,7 @@ async function main() {
      let account = await nodemailer.createTestAccount();
 
      // create reusable transporter object using the default SMTP transport
-     let transporter = nodemailer.createTransport({
+     /*let transporter = nodemailer.createTransport({
           host: "smtp.gmail.com",
           port: 587,
           secure: false, // true for 465, false for other ports
@@ -19,6 +19,21 @@ async function main() {
                user: 'jvectronic@gmail.com',
                pass: '49166752'
                //pass: 'Felicida00'
+          }
+     });*/
+
+     let transporter = nodemailer.createTransport({
+          host: 'smtp.gmail.com',
+          port: 465,
+          secure: true,
+          auth: {
+               type: 'OAuth2',
+               user: 'jvectronic@gmail.com',
+               clientId: '720457448691-8ijujf2f4h2covdupk7fg9psqmfm3fq6.apps.googleusercontent.com',
+               clientSecret: 'D0lF2_uLsKcGfSFh3Ua4bR1r',
+               refreshToken: '1/1NW2qENovysow1lKldfjTyIdWZPnBppZqO7HU3MQle8',
+               accessToken: 'ya29.GlunBhMe2UERvNzMC_dG1ZJZbyXyfvjtmuivND6jUM9qziRonE4PD5QXLyOdp0EAg4NLAGXoPJGj3VI47qZO7KBX2aWU2bjvvZci9WDy1xSQO0xPAYmjfOD17EMp',
+               expires: 1484314697598
           }
      });
 
