@@ -2,6 +2,7 @@ var mongoose = require('mongoose')
 var Schema = mongoose.Schema;
 
 var CotizacionSchema = new Schema({
+    idproyecto: String,
     cliente: String,
     email: String,
     empresa: String,

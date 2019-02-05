@@ -613,7 +613,10 @@ app.post('/proyectos/edit', function (req, res) {
       console.log(err);
       res.status(500).json({ msg: 'error' });
     } else {
-      res.json(result);
+      console.log(result)
+      res.json({
+        _id: req.body.id
+      });
     }
   });
 });
@@ -920,6 +923,10 @@ app.get('/generate/cotizacion/:id', async function (req, res) {
     console.log(cotizacion);
   } catch (error) {
     console.log(error);
+    res.status(401).json({
+      res: false,
+      message: error
+    })
   }
 
   //Materiales
@@ -930,6 +937,10 @@ app.get('/generate/cotizacion/:id', async function (req, res) {
     if (materiales) console.log('materiales encontrados');
   } catch (error) {
     console.log(error);
+    res.status(401).json({
+      res: false,
+      message: error
+    })
   }
 
   let content = `
@@ -984,42 +995,77 @@ app.get('/generate/cotizacion/:id', async function (req, res) {
 
     for (j in materiales) {
       if (materiales[j].nombre.localeCompare(cotizacion.items[i].nombre) === 0) {
-        if (materiales[j].elemento == 'Panel') {
-          if (cotizacion.items[i].cant != 0) {
 
-            if(cotizacion.items[i].nombre == 'Panel 90'){
+        if (cotizacion.items[i].cant != 0) {
 
-              content += `let panel90_app = '<tr> <td></td> <td>${cotizacion.items[i].nombre}</td> <td>${cotizacion.items[i].cant}</td> <td>$ ${cotizacion.items[i].unit}</td> <td>$ ${cotizacion.items[i].subtotal}</td> <td></td> <td></td> </tr>'
+          if (cotizacion.items[i].nombre == 'Panel 90') {
+
+            content += `let panel90_app = '<tr> <td></td> <td>${cotizacion.items[i].nombre}</td> <td>${cotizacion.items[i].cant}</td> <td>$ ${cotizacion.items[i].unit}</td> <td>$ ${cotizacion.items[i].subtotal}</td> <td></td> <td></td> </tr>'
                 document.getElementById('panel90_app').innerHTML = panel90_app;
                 `;
 
-            }
+          }
 
-            if (cotizacion.items[i].nombre == 'Panel 162') {
+          if (cotizacion.items[i].nombre == 'Panel 162') {
 
-              content += `let panel162_app = '<tr> <td></td> <td>${cotizacion.items[i].nombre}</td> <td>${cotizacion.items[i].cant}</td> <td>$ ${cotizacion.items[i].unit}</td> <td>$ ${cotizacion.items[i].subtotal}</td> <td></td> <td></td> </tr>'
+            content += `let panel162_app = '<tr> <td></td> <td>${cotizacion.items[i].nombre}</td> <td>${cotizacion.items[i].cant}</td> <td>$ ${cotizacion.items[i].unit}</td> <td>$ ${cotizacion.items[i].subtotal}</td> <td></td> <td></td> </tr>'
                 document.getElementById('panel162_app').innerHTML = panel162_app;
                 `;
 
-            }
+          }
 
-            if (cotizacion.items[i].nombre == 'Panel 210') {
+          if (cotizacion.items[i].nombre == 'Panel 210') {
 
-              content += `let panel210_app = '<tr> <td></td> <td>${cotizacion.items[i].nombre}</td> <td>${cotizacion.items[i].cant}</td> <td>$ ${cotizacion.items[i].unit}</td> <td>$ ${cotizacion.items[i].subtotal}</td> <td></td> <td></td> </tr>'
+            content += `let panel210_app = '<tr> <td></td> <td>${cotizacion.items[i].nombre}</td> <td>${cotizacion.items[i].cant}</td> <td>$ ${cotizacion.items[i].unit}</td> <td>$ ${cotizacion.items[i].subtotal}</td> <td></td> <td></td> </tr>'
                 document.getElementById('panel210_app').innerHTML = panel210_app;
                 `;
 
-            }
-
           }
-          
-        }
-        if (materiales[j].elemento == 'Fijacion') {
+
+          if (cotizacion.items[i].nombre == `2x3'' cep`) {
+            content += `let cep2x3_app = "<tr> <td></td> <td>${cotizacion.items[i].nombre}</td> <td>${cotizacion.items[i].cant}</td> <td>$ ${cotizacion.items[i].unit}</td> <td>$ ${cotizacion.items[i].subtotal}</td> <td></td> <td></td> </tr>"
+                document.getElementById('cep2x3_app').innerHTML = cep2x3_app;
+                `;
+          }
+          if (cotizacion.items[i].nombre == `2x4'' cep`) {
+            content += `let cep2x4_app = "<tr> <td></td> <td>${cotizacion.items[i].nombre}</td> <td>${cotizacion.items[i].cant}</td> <td>$ ${cotizacion.items[i].unit}</td> <td>$ ${cotizacion.items[i].subtotal}</td> <td></td> <td></td> </tr>"
+                document.getElementById('cep2x4_app').innerHTML = cep2x4_app;
+                `;
+          }
+          if (cotizacion.items[i].nombre == `2x6'' cep`) {
+            content += `let cep2x6_app = "<tr> <td></td> <td>${cotizacion.items[i].nombre}</td> <td>${cotizacion.items[i].cant}</td> <td>$ ${cotizacion.items[i].unit}</td> <td>$ ${cotizacion.items[i].subtotal}</td> <td></td> <td></td> </tr>"
+                document.getElementById('cep2x6_app').innerHTML = cep2x6_app;
+                `;
+          }
+
+          if (cotizacion.items[i].nombre == `Torn 6x1 5/8''`) {
+            content += `let torn6x1_app = "<tr> <td></td> <td>${cotizacion.items[i].nombre}</td> <td>${cotizacion.items[i].cant}</td> <td>$ ${cotizacion.items[i].unit}</td> <td>$ ${cotizacion.items[i].subtotal}</td> <td></td> <td></td> </tr>"
+                document.getElementById('torn6x1_app').innerHTML = torn6x1_app;
+                `;
+          }
+          if (cotizacion.items[i].nombre == `Torn 8x3''`) {
+            content += `let torn8x3_app = "<tr> <td></td> <td>${cotizacion.items[i].nombre}</td> <td>${cotizacion.items[i].cant}</td> <td>$ ${cotizacion.items[i].unit}</td> <td>$ ${cotizacion.items[i].subtotal}</td> <td></td> <td></td> </tr>"
+                document.getElementById('torn8x3_app').innerHTML = torn8x3_app;
+                `;
+          }
+          if (cotizacion.items[i].nombre == `Turbo 14x5 1/2''`) {
+            content += `let turbo14x5_app = "<tr> <td></td> <td>${cotizacion.items[i].nombre}</td> <td>${cotizacion.items[i].cant}</td> <td>$ ${cotizacion.items[i].unit}</td> <td>$ ${cotizacion.items[i].subtotal}</td> <td></td> <td></td> </tr>"
+                document.getElementById('turbo14x5_app').innerHTML = turbo14x5_app;
+                `;
+          }
+          if (cotizacion.items[i].nombre == `Turbo 8''`) {
+            content += `let turbo8_app = "<tr> <td></td> <td>${cotizacion.items[i].nombre}</td> <td>${cotizacion.items[i].cant}</td> <td>$ ${cotizacion.items[i].unit}</td> <td>$ ${cotizacion.items[i].subtotal}</td> <td></td> <td></td> </tr>"
+                document.getElementById('turbo8_app').innerHTML = turbo8_app;
+                `;
+          }
+          if (cotizacion.items[i].nombre == `Turbo 10''`) {
+            content += `let turbo10_app = "<tr> <td></td> <td>${cotizacion.items[i].nombre}</td> <td>${cotizacion.items[i].cant}</td> <td>$ ${cotizacion.items[i].unit}</td> <td>$ ${cotizacion.items[i].subtotal}</td> <td></td> <td></td> </tr>"
+                document.getElementById('turbo10_app').innerHTML = turbo10_app;
+                `;
+          }
 
         }
-        if (materiales[j].elemento == 'Madera') {
 
-        }
       }
     }
 
@@ -1028,7 +1074,10 @@ app.get('/generate/cotizacion/:id', async function (req, res) {
   await fs.writeFile('./template/js/main.js', content, err => {
     if (err) {
       console.error(err);
-      return;
+      res.status(401).json({
+        res: false,
+        message: err
+      })
     }
     console.log('Good!');
   });
@@ -1042,7 +1091,7 @@ function round(value, decimals) {
   return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);
 }
 
-async function sendEmail(email, namecotz, idcotz) {
+async function sendEmail(email, namecotz, idcotz, isEdit, ubicacion) {
 
   let account = await nodemailer.createTestAccount();
 
@@ -1052,19 +1101,52 @@ async function sendEmail(email, namecotz, idcotz) {
     port: 465,
     secure: true, // true for 465, false for other ports
     auth: {
+      //user: 'cubicador@prosip.cl',
+      //pass: 'Felicida00'
       user: 'jvectronic@gmail.com',
       pass: '49166752'
     }
   });
 
+  let subj = null
+
+  if (!isEdit) {
+    subj = `Cotización - ${namecotz} ✔`
+  } else {
+    subj = `Cotización Editada - ${namecotz} ✔`
+  }
+
+
+  let temphtml = `
+     <p>Hola Juan Ramon Perez, </p>
+     <p>En el siguiente enlace <a href="https://api.prosip.cl/generate/cotizacion/${idcotz}">PDF</a> encontrarás <br>
+     Presupuesto PROSIP Nº ${idcotz}  correspondiente a proyecto "${namecotz}", ubicado en ${ubicacion}.</p>
+     <p>Para completar tu pedido cotiza <a href="https://www.prosip.cl/w.despacho.html">DESPACHO</a> y compra directo en nuestra <a href="https://www.prosip.cl/tienda">TIENDA</a> <br>
+     Con PROSIP, este proyecto estará instalado en pocos días. Cotiza <a href="https://www.prosip.cl/w.instalacion.html">INSTALACIÓN</a> aquí.</p>
+
+     <p>Presupuesto generado automáticamente por CUBICADOR PROSIP, no garantiza volumen optimizado de Paneles ni incluye planos de montaje. 
+     Para Pack de paneles a medida y/o contratar Instalación Prosip, debes anticipar el Diseño del proyecto, a partir de este se re cubica el material. Puedes generar hasta un 10% de ahorro en base a una estructura eficiente y a una correcta optimización del SIP. </p>
+     <hr>
+     <p><strong>DISEÑO DE ESTRUCTURA<strong></p>
+     <p>Diseño de Estructura SIP. Valor desde 0,2 UF/m2</p>
+     <p>Diseño Estructural Completo. Memoria Fundaciones, SIP, Techumbre, Estructuras adicionales. Valor desde 0,4 UF/m2</p>
+     <p>Para compra de materiales y despacho Ingresa a nuestra <a href="https://www.prosip.cl/tienda">TIENDA</a> o comunicate con nostros a ventas@prosip.cl</p>
+     <p>Para más informacion y contratacion de servicios envíanos un correo a ventas@prosip.cl</p>
+     <br>
+     <p>Un cordial saludo,</p>
+     <p>Equipo Plataforma PROSIP <br>
+     569 5687 3083 <br>
+     www.prosip.cl</p>
+    `
+
   // setup email data with unicode symbols
   let mailOptions = {
     from: '"Mailer Prosip 👻" <foo@example.com>', // sender address
     to: email, // list of receivers
-    subject: `Cotización - ${namecotz} ✔`, // Subject line
+    subject: subj, // Subject line
     //text: "Hello world?",
-    //html: `Click en el siguiente enlace para mostrar el PDF --> <a href="https://api.prosip.cl/generate/cotizacion/${idcotz}">¡GO!</a>`
-    html: `Click en el siguiente enlace para mostrar el PDF --> <a href="http://localhost:8085/generate/cotizacion/${idcotz}">¡GO!</a>`
+    html: temphtml,
+    //html: `Click en el siguiente enlace para mostrar el PDF --> <a href="http://localhost:8085/generate/cotizacion/${idcotz}">¡GO!</a>`
   };
 
   // send mail with defined transport object
@@ -1077,24 +1159,61 @@ async function sendEmail(email, namecotz, idcotz) {
   return nodemailer.getTestMessageUrl(info);
 }
 
-app.post('/cotizacion/new', async (req, res) => {
+app.post('/cotizacion/new/:idproject', async (req, res) => {
   let data = req.body;
   let dateCl = moment()
     .tz('America/Santiago')
     .format('YYYY-MM-DD');
   let date = new Date();
+  let isEdit = false
 
   console.log(`Recibiendo en body`);
   console.log(data);
+
+  //Proyecto en cotizacion
+  let proyecto = null;
+  let proyectoid = null
+  try {
+    console.log('Buscando proyecto');
+    proyecto = await Cotizacion.findOne({ idproyecto: req.params.idproject });
+    if (proyecto) {
+      console.log('Cotizacion encontrada')
+      isEdit = true
+    } else {
+      console.log('Cotizacion no encontrada')
+    }
+    proyecto = req.params.idproject
+  } catch (error) {
+    console.log(error);
+    res.status(401).json({
+      res: false,
+      message: error
+    })
+  }
 
   //Cliente
   let cliente = null;
   try {
     console.log('Buscando cliente');
     cliente = await Clientes.findById(data.project.cliente);
+    if (!cliente) {
+      console.log('Cliente externo no encontrado')
+      console.log('Buscando cliente interno')
+      cliente = await Usuarios.findById(data.project.cliente);
+      if (!cliente) {
+        res.status(401).json({
+          res: false,
+          message: 'Cliente no encontrado'
+        })
+      }
+    }
     console.log(cliente);
   } catch (error) {
     console.log(error);
+    res.status(401).json({
+      res: false,
+      message: error
+    })
   }
 
   //Materiales
@@ -1103,8 +1222,18 @@ app.post('/cotizacion/new', async (req, res) => {
     console.log('Buscando materiales');
     materiales = await Materiales.find();
     if (materiales) console.log('materiales encontrados');
+    if (!materiales) {
+      res.status(401).json({
+        res: false,
+        message: 'Materiales no encontrados'
+      })
+    }
   } catch (error) {
     console.log(error);
+    res.status(401).json({
+      res: false,
+      message: error
+    })
   }
 
   await request.get(
@@ -1122,12 +1251,13 @@ app.post('/cotizacion/new', async (req, res) => {
       console.log(`UF >>> ${result.uf.valor}`);
 
       let cotizacion = {
+        idproyecto: proyecto,
+        cotizacion: date.getTime(),
         cliente: cliente.nombre_contacto,
         email: cliente.email,
         empresa: cliente.empresa,
         uf: parseInt(result.uf.valor),
         fecha: dateCl.toString(),
-        cotizacion: date.getTime(),
         nombre_proyecto: data.project.nombre_proyecto,
         version: data.project.version,
         ubicacion: data.project.ubicacion,
@@ -1172,7 +1302,8 @@ app.post('/cotizacion/new', async (req, res) => {
           let unit = await materiales.find(k => k.nombre == nombre).promedio;
           let subtotal = cant * unit;
           console.log('Flujo nro. 1');
-          console.log(`${nombre}|${cant}|${unit}|${subtotal}`);
+          console.log(`${nombre}`);
+          //console.log(`${nombre}|${cant}|${unit}|${subtotal}`);
           cotizacion.items[index].cant = cotizacion.items[index].cant + cant;
           cotizacion.items[index].subtotal =
             cotizacion.items[index].subtotal + subtotal;
@@ -1190,7 +1321,8 @@ app.post('/cotizacion/new', async (req, res) => {
             subtotal
           };
           console.log('Flujo nro. 2');
-          console.log(aux);
+          console.log(nombre)
+          //console.log(aux);
           cotizacion.items.push(aux);
         }
 
@@ -1239,9 +1371,31 @@ app.post('/cotizacion/new', async (req, res) => {
       //console.log(cotizacion.items)
       const cot = new Cotizacion(cotizacion);
       try {
-        let resp = await cot.save();
-        console.log('Guardado con exito');
-        let resemail = await sendEmail(cotizacion.email, cotizacion.nombre_proyecto, cotizacion.cotizacion)
+        if (isEdit) {
+          //let upcot = await Cotizacion.updateOne({idproyecto: proyecto}, cotizacion)
+          console.log('idcotizacion', proyecto)
+          Cotizacion.updateOne({ idproyecto: proyecto }, cotizacion, function (err, resp) {
+            if (err) {
+              console.log(err);
+              res.json({ error: 'error' });
+            }
+            console.log('Actualizado con exito');
+          });
+        } else {
+          await cot.save();
+          console.log('Guardado con exito');
+        }
+
+        let resemail = null
+        try {
+          resemail = await sendEmail(cotizacion.email, cotizacion.nombre_proyecto, cotizacion.cotizacion, isEdit, cotizacion.ubicacion)
+        } catch (error) {
+          console.log(error)
+          res.status(401).json({
+            res: false,
+            message: error
+          })
+        }
         res.json({
           message: 'Cotizacion guardada',
           email: resemail,
