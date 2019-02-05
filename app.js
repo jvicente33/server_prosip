@@ -991,6 +991,22 @@ app.get('/generate/cotizacion/:id', async function (req, res) {
   document.getElementById('ufm2civa_app').innerHTML = ufm2civa_app;
   `;
 
+  let p90 = false
+  let p114 = false
+  let p162 = false
+  let p210 = false
+
+  let c3 = false
+  let c4 = false
+  let c6 = false
+
+  let t6 = false
+  let t8 = false
+  let t14 = false
+
+  let tu8 = false
+  let tu10 = false
+
   for (i in cotizacion.items) {
 
     for (j in materiales) {
@@ -998,70 +1014,86 @@ app.get('/generate/cotizacion/:id', async function (req, res) {
 
         if (cotizacion.items[i].cant != 0) {
 
-          if (cotizacion.items[i].nombre == 'Panel 90') {
+          if (cotizacion.items[i].nombre == 'Panel 90' && p90 == false) {
 
             content += `let panel90_app = '<tr> <td></td> <td>${cotizacion.items[i].nombre}</td> <td>${cotizacion.items[i].cant}</td> <td>$ ${cotizacion.items[i].unit}</td> <td>$ ${cotizacion.items[i].subtotal}</td> <td></td> <td></td> </tr>'
                 document.getElementById('panel90_app').innerHTML = panel90_app;
                 `;
-
+            p90 = true
           }
 
-          if (cotizacion.items[i].nombre == 'Panel 162') {
+          if (cotizacion.items[i].nombre == 'Panel 114' && p114 == false) {
+
+            content += `let panel114_app = '<tr> <td></td> <td>${cotizacion.items[i].nombre}</td> <td>${cotizacion.items[i].cant}</td> <td>$ ${cotizacion.items[i].unit}</td> <td>$ ${cotizacion.items[i].subtotal}</td> <td></td> <td></td> </tr>'
+                document.getElementById('panel114_app').innerHTML = panel114_app;
+                `;
+            p114 = true
+          }
+
+          if (cotizacion.items[i].nombre == 'Panel 162' && p162 == false) {
 
             content += `let panel162_app = '<tr> <td></td> <td>${cotizacion.items[i].nombre}</td> <td>${cotizacion.items[i].cant}</td> <td>$ ${cotizacion.items[i].unit}</td> <td>$ ${cotizacion.items[i].subtotal}</td> <td></td> <td></td> </tr>'
                 document.getElementById('panel162_app').innerHTML = panel162_app;
                 `;
-
+            p162 = true
           }
 
-          if (cotizacion.items[i].nombre == 'Panel 210') {
+          if (cotizacion.items[i].nombre == 'Panel 210' && p210 == false) {
 
             content += `let panel210_app = '<tr> <td></td> <td>${cotizacion.items[i].nombre}</td> <td>${cotizacion.items[i].cant}</td> <td>$ ${cotizacion.items[i].unit}</td> <td>$ ${cotizacion.items[i].subtotal}</td> <td></td> <td></td> </tr>'
                 document.getElementById('panel210_app').innerHTML = panel210_app;
                 `;
-
+            p210 = true
           }
 
-          if (cotizacion.items[i].nombre == `2x3'' cep`) {
+          if (cotizacion.items[i].nombre == `2x3'' cep` && c3 == false) {
             content += `let cep2x3_app = "<tr> <td></td> <td>${cotizacion.items[i].nombre}</td> <td>${cotizacion.items[i].cant}</td> <td>$ ${cotizacion.items[i].unit}</td> <td>$ ${cotizacion.items[i].subtotal}</td> <td></td> <td></td> </tr>"
                 document.getElementById('cep2x3_app').innerHTML = cep2x3_app;
                 `;
+            c3 = true
           }
-          if (cotizacion.items[i].nombre == `2x4'' cep`) {
+          if (cotizacion.items[i].nombre == `2x4'' cep` && c4 == false) {
             content += `let cep2x4_app = "<tr> <td></td> <td>${cotizacion.items[i].nombre}</td> <td>${cotizacion.items[i].cant}</td> <td>$ ${cotizacion.items[i].unit}</td> <td>$ ${cotizacion.items[i].subtotal}</td> <td></td> <td></td> </tr>"
                 document.getElementById('cep2x4_app').innerHTML = cep2x4_app;
                 `;
+            c4 = true
           }
-          if (cotizacion.items[i].nombre == `2x6'' cep`) {
+          if (cotizacion.items[i].nombre == `2x6'' cep` && c6 == false) {
             content += `let cep2x6_app = "<tr> <td></td> <td>${cotizacion.items[i].nombre}</td> <td>${cotizacion.items[i].cant}</td> <td>$ ${cotizacion.items[i].unit}</td> <td>$ ${cotizacion.items[i].subtotal}</td> <td></td> <td></td> </tr>"
                 document.getElementById('cep2x6_app').innerHTML = cep2x6_app;
                 `;
+            c6 = true
           }
 
-          if (cotizacion.items[i].nombre == `Torn 6x1 5/8''`) {
+          if (cotizacion.items[i].nombre == `Torn 6x1 5/8''` && t6 == false) {
             content += `let torn6x1_app = "<tr> <td></td> <td>${cotizacion.items[i].nombre}</td> <td>${cotizacion.items[i].cant}</td> <td>$ ${cotizacion.items[i].unit}</td> <td>$ ${cotizacion.items[i].subtotal}</td> <td></td> <td></td> </tr>"
                 document.getElementById('torn6x1_app').innerHTML = torn6x1_app;
                 `;
+            t6 = true
           }
-          if (cotizacion.items[i].nombre == `Torn 8x3''`) {
+          if (cotizacion.items[i].nombre == `Torn 8x3''` && t8 == false) {
             content += `let torn8x3_app = "<tr> <td></td> <td>${cotizacion.items[i].nombre}</td> <td>${cotizacion.items[i].cant}</td> <td>$ ${cotizacion.items[i].unit}</td> <td>$ ${cotizacion.items[i].subtotal}</td> <td></td> <td></td> </tr>"
                 document.getElementById('torn8x3_app').innerHTML = torn8x3_app;
                 `;
+            t8 = true
           }
-          if (cotizacion.items[i].nombre == `Turbo 14x5 1/2''`) {
+          if (cotizacion.items[i].nombre == `Turbo 14x5 1/2''` && t14 == false) {
             content += `let turbo14x5_app = "<tr> <td></td> <td>${cotizacion.items[i].nombre}</td> <td>${cotizacion.items[i].cant}</td> <td>$ ${cotizacion.items[i].unit}</td> <td>$ ${cotizacion.items[i].subtotal}</td> <td></td> <td></td> </tr>"
                 document.getElementById('turbo14x5_app').innerHTML = turbo14x5_app;
                 `;
+            t14 = true
           }
-          if (cotizacion.items[i].nombre == `Turbo 8''`) {
+          if (cotizacion.items[i].nombre == `Turbo 8''` && tu8 == false) {
             content += `let turbo8_app = "<tr> <td></td> <td>${cotizacion.items[i].nombre}</td> <td>${cotizacion.items[i].cant}</td> <td>$ ${cotizacion.items[i].unit}</td> <td>$ ${cotizacion.items[i].subtotal}</td> <td></td> <td></td> </tr>"
                 document.getElementById('turbo8_app').innerHTML = turbo8_app;
                 `;
+            tu8 = true
           }
-          if (cotizacion.items[i].nombre == `Turbo 10''`) {
+          if (cotizacion.items[i].nombre == `Turbo 10''` && tu10 == false) {
             content += `let turbo10_app = "<tr> <td></td> <td>${cotizacion.items[i].nombre}</td> <td>${cotizacion.items[i].cant}</td> <td>$ ${cotizacion.items[i].unit}</td> <td>$ ${cotizacion.items[i].subtotal}</td> <td></td> <td></td> </tr>"
                 document.getElementById('turbo10_app').innerHTML = turbo10_app;
                 `;
+            tu10 = true
           }
 
         }
