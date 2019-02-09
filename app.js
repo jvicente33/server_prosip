@@ -575,7 +575,7 @@ app.get('/proyectos/list', function (req, res) {
 app.get('/proyectos/datatable', function (req, res) {
   /* Personalizamos las columnas devueltas */
   let selectColumns =
-    '_id nombre_proyecto descripcion nombre_usuario created_at';
+    '_id nombre_proyecto descripcion m2 version nombre_usuario created_at';
 
   Proyectos.find({}, selectColumns, function (err, result) {
     if (err) {
