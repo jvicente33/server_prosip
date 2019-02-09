@@ -290,6 +290,14 @@ app.post('/usuario/login', async (req, res) => {
   });
 });
 
+app.get('/usuario/email/:email', async (req, res) => {
+  let email = req.params.email;
+  const user = await Usuarios.find({ email });
+  res.json({
+    usuario: user
+  });
+});
+
 app.post('/sesion/start', async (req, res) => {
   const data = new Sesion(req.body);
   await data.save();
