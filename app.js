@@ -1234,6 +1234,22 @@ async function sendEmail(email, namecotz, idcotz, isEdit, ubicacion, nameclient)
   return nodemailer.getTestMessageUrl(info);
 }
 
+app.put('/proyecto/status/:id/:status', async (req, res) => {
+  Proyectos.updateOne({ _id: req.params.id }, {
+    status: req.params.status
+  }, function (err, resp) {
+    if (err) {
+      console.log(err);
+      res.json({ error: 'error' });
+    }
+    console.log('Actualizado con exito');
+    res.json({
+      res: true,
+      message: 'Status actualizado'
+    })
+  });
+})
+
 app.post('/cotizacion/new/:idproject', async (req, res) => {
   let data = req.body;
   let dateCl = moment()
@@ -1268,13 +1284,19 @@ app.post('/cotizacion/new/:idproject', async (req, res) => {
 
   //Cliente
   let cliente = null;
+  let clienteEmpresa = ''
+  let clienteNombre = ''
   try {
     console.log('Buscando cliente');
     cliente = await Clientes.findById(data.project.cliente);
+    clienteNombre = cliente.nombre_contacto
+    clienteEmpresa = cliente.empresa
     if (!cliente) {
       console.log('Cliente externo no encontrado')
       console.log('Buscando cliente interno')
       cliente = await Usuarios.findById(data.project.cliente);
+      clienteNombre = cliente.nombres
+      clienteEmpresa = 'n/a'
       if (!cliente) {
         res.status(401).json({
           res: false,
@@ -1328,9 +1350,9 @@ app.post('/cotizacion/new/:idproject', async (req, res) => {
       let cotizacion = {
         idproyecto: proyecto,
         cotizacion: date.getTime(),
-        cliente: cliente.nombre_contacto || cliente.nombres,
+        cliente: clienteNombre,
         email: cliente.email,
-        empresa: cliente.empresa || 'n/a',
+        empresa: clienteEmpresa,
         uf: parseInt(result.uf.valor),
         fecha: dateCl.toString(),
         nombre_proyecto: data.project.nombre_proyecto,

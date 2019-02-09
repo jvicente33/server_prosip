@@ -17,6 +17,10 @@ var ProyectosSchema = new Schema({
          type: String,
          default: ""
     },
+    status: {
+        type: String,
+        default: 'Iniciado'
+    },
     object_form: Object,
     object_result: Object,
     object_despacho:Object,
