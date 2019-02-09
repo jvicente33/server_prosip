@@ -920,6 +920,19 @@ app.get('/kilometros', function (req, res) {
   });
 });
 
+app.get('/generate/proyecto/:id', async function (req, res) {
+  try {
+    let proyecto = await Cotizacion.find({idproyecto: req.params.id})
+    await res.redirect(`/generate/cotizacion/${proyecto[0].cotizacion}`);
+  } catch (error) {
+    console.log(error)
+    res.status(404).json({
+      res: false,
+      message: error
+    })
+  }
+})
+
 app.get('/generate/cotizacion/:id', async function (req, res) {
   const fs = require('fs');
 
@@ -1315,9 +1328,9 @@ app.post('/cotizacion/new/:idproject', async (req, res) => {
       let cotizacion = {
         idproyecto: proyecto,
         cotizacion: date.getTime(),
-        cliente: cliente.nombre_contacto,
+        cliente: cliente.nombre_contacto || cliente.nombres,
         email: cliente.email,
-        empresa: cliente.empresa,
+        empresa: cliente.empresa || 'n/a',
         uf: parseInt(result.uf.valor),
         fecha: dateCl.toString(),
         nombre_proyecto: data.project.nombre_proyecto,
