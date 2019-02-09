@@ -7,10 +7,16 @@ var ProyectosSchema = new Schema({
     tipo_usuario: String,
     nombre_proyecto: String,
     descripcion: String,
-    version: String,
+    version: {
+         type: String,
+         default: "1.0"
+    },
     ubicacion: String,
     cliente: String,
-    m2: String,
+    m2: {
+         type: String,
+         default: ""
+    },
     object_form: Object,
     object_result: Object,
     object_despacho:Object,
