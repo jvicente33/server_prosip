@@ -974,10 +974,29 @@ app.get('/generate/proyecto/:id', async function (req, res) {
   }
 })
 
-app.get('/test/increment', async (req, res) => {
+app.get('/change/increment', async (req, res) => {
   try {
-    const cot = new Cotizacion({cliente: 'Jose proa'});
-    await cot.save()
+    const cot = await Cotizacion.find({})
+    let cont = 1
+    let temp = []
+    for (let i in cot){
+      if(parseInt(cot[i].cotizacion) > 1000){
+        cot[i].cotizacion = cont
+        cont++
+      }
+      temp.push(cot[i])
+    }
+    console.log(temp)
+
+    for (let i in temp){
+      try {
+        await Cotizacion.updateOne({ _id: temp[i]._id }, temp[i]);  
+      } catch (error) {
+        console.log(error)
+      }
+      
+    }
+
     res.json({
       message: 'Good!'
     })
@@ -1251,7 +1270,7 @@ async function sendEmail(email, namecotz, idcotz, isEdit, ubicacion, nameclient)
 
   let temphtml = `
      <p>Hola ${nameclient}, </p>
-     <p>En el siguiente enlace >> <a href="https://api.prosip.cl/generate/cotizacion/${idcotz}">PDF</a> << encontrarás el
+     <p>En el siguiente enlace >> <a href="https://api.prosip.cl/generate/proyecto/${idcotz}">PDF</a> << encontrarás el
      Presupuesto PROSIP Nº ${idcotz}, correspondiente al proyecto "${namecotz}", ubicado en ${ubicacion}.</p>
      <p>Para completar tu pedido cotiza <a href="https://www.prosip.cl/w.despacho.html">DESPACHO</a> y compra directo en nuestra <a href="https://www.prosip.cl/tienda">TIENDA</a>.<br>
      Con PROSIP, este proyecto estará instalado en pocos días. Cotiza <a href="https://www.prosip.cl/w.instalacion.html">INSTALACIÓN</a> aquí.</p>
@@ -1560,7 +1579,7 @@ app.post('/cotizacion/new/:idproject', async (req, res) => {
 
         let resemail = null
         try {
-          resemail = await sendEmail(cotizacion.email, cotizacion.nombre_proyecto, cotizacion.cotizacion, isEdit, cotizacion.ubicacion, cotizacion.cliente)
+          resemail = await sendEmail(cotizacion.email, cotizacion.nombre_proyecto, cotizacion.idproyecto, isEdit, cotizacion.ubicacion, cotizacion.cliente)
         } catch (error) {
           console.log(error)
           res.status(401).json({
