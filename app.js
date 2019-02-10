@@ -316,6 +316,22 @@ app.put('/sesion/update/:id', async (req, res) => {
   });
 });
 
+app.get('/sesion/user/fast/:email', async (req, res) => {
+  try {
+    const sesion = await Sesion.find({ email: req.params.email });
+    res.json({
+      res: true,
+      total: sesion.length
+    })
+  } catch (error) {
+    console.log(error)
+    res.json({
+      res: false,
+      message: error
+    })
+  }
+})
+
 app.get('/sesion/user/:email', async (req, res) => {
   const sesion = await Sesion.find({ email: req.params.email });
 
