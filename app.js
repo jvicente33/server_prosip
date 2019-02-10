@@ -1291,6 +1291,21 @@ app.put('/proyecto/status/:id/:status', async (req, res) => {
   });
 })
 
+app.get('/proyecto/reportes', async (req, res) => {
+  try {
+    let data = await Cotizacion.find({})
+    res.json({
+      data
+    })
+  } catch (error) {
+    console.log(error)
+    res.json({
+      res: false,
+      message: error
+    })
+  }
+})
+
 app.post('/cotizacion/new/:idproject', async (req, res) => {
   let data = req.body;
   let dateCl = moment()
