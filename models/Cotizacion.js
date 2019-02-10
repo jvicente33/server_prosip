@@ -1,14 +1,23 @@
 var mongoose = require('mongoose')
 var Schema = mongoose.Schema;
+let autoIncrement = require('mongoose-auto-increment');
+
+autoIncrement.initialize(mongoose);
 
 var CotizacionSchema = new Schema({
     idproyecto: String,
-    cliente: String,
+    cliente: {
+        type: String,
+        default: ''
+    },
     email: String,
-    empresa: String,
+    empresa: {
+        type: String,
+        default: 'n/a'
+    },
     uf: Number,
     fecha: String,
-    cotizacion: String,
+    //cotizacion: String,
     nombre_proyecto: String,
     version: String,
     ubicacion: String,
@@ -31,6 +40,13 @@ var CotizacionSchema = new Schema({
     iva: String,
     totalciva: String,
     ufm2civa: String
+});
+
+CotizacionSchema.plugin(autoIncrement.plugin, {
+    model: 'Numero',
+    field: 'cotizacion',
+    startAt: 222,
+    incrementBy: 1
 });
 
 var CotizacionSchema = mongoose.model('cotizacion', CotizacionSchema);

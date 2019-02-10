@@ -974,6 +974,21 @@ app.get('/generate/proyecto/:id', async function (req, res) {
   }
 })
 
+app.get('/test/increment', async (req, res) => {
+  try {
+    const cot = new Cotizacion({cliente: 'Jose proa'});
+    await cot.save()
+    res.json({
+      message: 'Good!'
+    })
+  } catch (error) {
+    console.log(error)
+    res.json({
+      message: error
+    })
+  }
+})
+
 app.get('/generate/cotizacion/:id', async function (req, res) {
   const fs = require('fs');
 
@@ -1006,6 +1021,7 @@ app.get('/generate/cotizacion/:id', async function (req, res) {
   }
 
   let content = `
+  document.title = 'Presupuesto Prosip - ${cotizacion.cotizacion}'
   let cliente = '${cotizacion.cliente}';
   document.getElementById('cliente_app').innerHTML = cliente;
   let empresa = '${cotizacion.empresa}';
@@ -1408,7 +1424,7 @@ app.post('/cotizacion/new/:idproject', async (req, res) => {
 
       let cotizacion = {
         idproyecto: proyecto,
-        cotizacion: date.getTime(),
+        //cotizacion: date.getTime(),
         cliente: clienteNombre,
         email: cliente.email,
         empresa: clienteEmpresa,
