@@ -1303,7 +1303,7 @@ async function sendEmail(email, namecotz, idcotz, isEdit, ubicacion, nameclient)
   let originalSource = fs.readFileSync(__dirname + '/template/email.html', 'utf8');
 
   styliner.processHTML(originalSource)
-    .then(function (processedSource) {
+    .then(async function (processedSource) {
       let aux = processedSource.toString()
       aux = aux.replace(/llnameclient/i, nameclient)
       aux = aux.replace(/llnrocotizacion/i, nrocotz)
