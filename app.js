@@ -1289,8 +1289,11 @@ app.post('/cotizacion/new/:idproject', async (req, res) => {
   try {
     console.log('Buscando cliente');
     cliente = await Clientes.findById(data.project.cliente);
-    clienteNombre = cliente.nombre_contacto
-    clienteEmpresa = cliente.empresa
+    if(cliente){
+      clienteNombre = cliente.nombre_contacto
+      clienteEmpresa = cliente.empresa
+    }
+    
     if (!cliente) {
       console.log('Cliente externo no encontrado')
       console.log('Buscando cliente interno')
