@@ -221,13 +221,38 @@ app.get('/usuarios/datatable', function (req, res) {
   //     })
   // })
 
-  Usuarios.find({}, function (err, result) {
+  Usuarios.find({}, async function (err, result) {
     if (err) {
       console.log(err);
       res.status(500).json({ msg: 'error' });
     } else {
       let resultDatatables = {
         data: result
+      };
+
+      res.json(resultDatatables);
+    }
+  });
+});
+
+app.get('/usuarios/full/datatable', function (req, res) {
+
+  Usuarios.find({}, async function (err, result) {
+    if (err) {
+      console.log(err);
+      res.status(500).json({ msg: 'error' });
+    } else {
+      let temp = []
+      for (let i in result) {
+        const sesion = await Sesion.find({ email: result[i].email });
+        let aux = {
+          data: result[i],
+          total: sesion.length
+        }
+        temp.push(aux)
+      }
+      let resultDatatables = {
+        data: temp
       };
 
       res.json(resultDatatables);
