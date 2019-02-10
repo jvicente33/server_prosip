@@ -9,6 +9,12 @@ var request = require('request');
 var async = require('async');
 var pdfService = require('./services/pdf');
 const nodemailer = require('nodemailer')
+const fs = require('fs')
+const fileType = require('file-type')
+const Styliner = require('styliner')
+
+
+let styliner = new Styliner(__dirname + '/html');
 
 /*
  * Modelos
@@ -1008,6 +1014,18 @@ app.get('/change/increment', async (req, res) => {
   }
 })
 
+
+app.get('/upload/image/:name', (req, res) => {
+
+  let imagename = req.params.name
+  let imagepath = __dirname + "/assets/" + imagename + ".png"
+  let image = fs.readFileSync(imagepath)
+  let mime = fileType(image).mime
+
+  res.writeHead(200, { 'Content-Type': mime })
+  res.end(image, 'binary')
+})
+
 app.get('/generate/cotizacion/:id', async function (req, res) {
   const fs = require('fs');
 
@@ -1038,6 +1056,21 @@ app.get('/generate/cotizacion/:id', async function (req, res) {
       message: error
     })
   }
+
+  let a = parseInt(cotizacion.total_neto).toLocaleString();
+  a = a.toString()
+  a = a.replace(/\,/, '.')
+  cotizacion.total_neto = a
+
+  let b = parseInt(cotizacion.iva).toLocaleString();
+  b = b.toString()
+  b = b.replace(/\,/, '.')
+  cotizacion.iva = b
+
+  let c = parseInt(cotizacion.totalciva).toLocaleString();
+  c = c.toString()
+  c = c.replace(/\,/, '.')
+  cotizacion.totalciva = c
 
   let content = `
   document.title = 'Presupuesto Prosip - ${cotizacion.cotizacion}'
@@ -1231,19 +1264,6 @@ async function sendEmail(email, namecotz, idcotz, isEdit, ubicacion, nameclient)
   * @param refreshToken 1/Si156a-Ncsvq4NAHt4ZJPd1YpxOTz2phN66u-9QZcXg
   */
 
-  // create reusable transporter object using the default SMTP transport
-  /*let transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false, // true for 465, false for other ports
-    auth: {
-      //user: 'cubicador@prosip.cl',
-      //pass: 'Felicida00'
-      user: 'jvectronic@gmail.com',
-      pass: '49166752'
-    }
-  });*/
-
   let transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 465,
@@ -1259,55 +1279,56 @@ async function sendEmail(email, namecotz, idcotz, isEdit, ubicacion, nameclient)
     }
   });
 
+
+  let nrocotz = 1
+  try {
+    let nro = await Cotizacion.findOne({idproyecto: idcotz})
+    if(nro){
+      console.log('Cotizacion encontrada para buscar numero')
+      console.log(nro)
+      nrocotz = nro.cotizacion
+    }
+  } catch (error) {
+    console.log(error)
+  }
+
   let subj = null
 
   if (!isEdit) {
-    subj = `Cotización - ${namecotz} ✔`
+    subj = `Solución PROSIP N° ${nrocotz} ✔`
   } else {
-    subj = `Cotización Editada - ${namecotz} ✔`
+    subj = `Solución PROSIP N° ${nrocotz} - Editado ✔`
   }
 
+  let originalSource = fs.readFileSync(__dirname + '/template/email.html', 'utf8');
 
-  let temphtml = `
-     <p>Hola ${nameclient}, </p>
-     <p>En el siguiente enlace >> <a href="https://api.prosip.cl/generate/proyecto/${idcotz}">PDF</a> << encontrarás el
-     Presupuesto PROSIP Nº ${idcotz}, correspondiente al proyecto "${namecotz}", ubicado en ${ubicacion}.</p>
-     <p>Para completar tu pedido cotiza <a href="https://www.prosip.cl/w.despacho.html">DESPACHO</a> y compra directo en nuestra <a href="https://www.prosip.cl/tienda">TIENDA</a>.<br>
-     Con PROSIP, este proyecto estará instalado en pocos días. Cotiza <a href="https://www.prosip.cl/w.instalacion.html">INSTALACIÓN</a> aquí.</p>
+  styliner.processHTML(originalSource)
+    .then(function (processedSource) {
+      let aux = processedSource.toString()
+      aux = aux.replace(/llnameclient/i, nameclient)
+      aux = aux.replace(/llnrocotizacion/i, nrocotz)
+      aux = aux.replace(/llnameproyecto/i, namecotz)
+      aux = aux.replace(/llubicacion/i, ubicacion)
+      aux = aux.replace(/llurlcotizacion/i, `https://api.prosip.cl/generate/cotizacion/${nrocotz}`)
 
-     <p>Presupuesto generado automáticamente por CUBICADOR PROSIP, no garantiza volumen optimizado de Paneles ni incluye planos de montaje. 
-     Para Pack de paneles a medida y/o contratar Instalación Prosip, debes anticipar el Diseño del proyecto, a partir de este se re cubica el material. Puedes generar hasta un 10% de ahorro en base a una estructura eficiente y a una correcta optimización del SIP. </p>
-     <hr>
-     <p><strong>DISEÑO DE ESTRUCTURA<strong></p>
-     <p>Diseño de Estructura SIP. Valor desde 0,2 UF/m2</p>
-     <p>Diseño Estructural Completo. Memoria Fundaciones, SIP, Techumbre, Estructuras adicionales. Valor desde 0,4 UF/m2</p>
-     <p>Para compra de materiales y despacho Ingresa a nuestra <a href="https://www.prosip.cl/tienda">TIENDA</a> o comunicate con nostros a ventas@prosip.cl</p>
-     <p>Para más informacion y contratacion de servicios envíanos un correo a ventas@prosip.cl</p>
-     <br>
-     <p>Un cordial saludo,</p>
-     <p>Equipo Plataforma PROSIP <br>
-     569 5687 3083 <br>
-     www.prosip.cl</p>
-    `
+      let mailOptions = {
+        from: `"Solución PROSIP N° ${nrocotz}" <foo@example.com>`,
+        to: email,
+        subject: subj,
+        html: aux
+      };
 
-  // setup email data with unicode symbols
-  let mailOptions = {
-    from: '"Mailer Prosip 👻" <foo@example.com>', // sender address
-    to: email, // list of receivers
-    subject: subj, // Subject line
-    //text: "Hello world?",
-    html: temphtml,
-    //html: `Click en el siguiente enlace para mostrar el PDF --> <a href="http://localhost:8085/generate/cotizacion/${idcotz}">¡GO!</a>`
-  };
+      let info = await transporter.sendMail(mailOptions)
 
-  // send mail with defined transport object
-  let info = await transporter.sendMail(mailOptions)
+      console.log("Message sent: %s", info.messageId);
+      console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+      return nodemailer.getTestMessageUrl(info);
 
-  console.log("Message sent: %s", info.messageId);
-  // Preview only available when sending through an Ethereal account
-  console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+    })
+    .catch(function (error) {
+      console.log(error)
+    });
 
-  return nodemailer.getTestMessageUrl(info);
 }
 
 app.put('/proyecto/status/:id/:status', async (req, res) => {

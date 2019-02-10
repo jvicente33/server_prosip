@@ -1,9 +1,13 @@
 'use strict';
 
 const nodemailer = require('nodemailer')
+const Styliner = require('styliner')
+const fs = require('fs')
+
+let styliner = new Styliner(__dirname + '/html');
 
 // async..await is not allowed in global scope, must use a wrapper
-async function main() {
+async function main(textHtml) {
 
      // Generate test SMTP service account from ethereal.email
      // Only needed if you don't have a real mail account for testing
@@ -33,14 +37,9 @@ async function main() {
           host: 'smtp.gmail.com',
           port: 465,
           secure: true,
-          auth: {
-               type: 'OAuth2',
-               user: 'cubicador@prosip.cl',
-               clientId: '720457448691-8ijujf2f4h2covdupk7fg9psqmfm3fq6.apps.googleusercontent.com',
-               clientSecret: 'D0lF2_uLsKcGfSFh3Ua4bR1r',
-               refreshToken: '1/Si156a-Ncsvq4NAHt4ZJPd1YpxOTz2phN66u-9QZcXg',
-               accessToken: 'ya29.GlunBgfHPCqsp9eqy1bO7_gjfVsNE4vShcJuMGqTAcv185z2rRcLaALP90peOcA0AWIP4cYWypFEToFbvaMuA3ctiYQiRU8GPmKaqRPARCHVZQEwpHZ_U5-oDd5v',
-               expires: 1484314697598
+          auth:{
+               user: 'jvectronic@gmail.com',
+               pass: '49166752'
           }
      });
 
@@ -87,7 +86,7 @@ async function main() {
           from: '"Fred Foo 👻" <foo@example.com>', // sender address
           to: "blackencio33@gmail.com", // list of receivers
           subject: "Hello ✔", // Subject line
-          html: temphtml
+          html: textHtml
      };
 
      // send mail with defined transport object
@@ -101,5 +100,28 @@ async function main() {
      // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
 }
 
-main().catch(console.error);
+let originalSource = fs.readFileSync(__dirname + '/emailTemplate.html', 'utf8');
+
+/*styliner.processHTML(originalSource)
+     .then(function (processedSource) {
+          let aux = processedSource.toString()
+          aux = aux.replace(/llnameclient/i, "José Bolívar")
+          aux = aux.replace(/llnrocotizacion/i, "123456-1")
+          aux = aux.replace(/llnameproyecto/i, "Casa de Palacios")
+          aux = aux.replace(/llubicacion/i, "Carabobo")
+          aux = aux.replace(/llurlcotizacion/i, "https://api.prosip.cl/generate/proyecto/123456")
+          main(aux).catch(console.error);
+     })
+     .catch(function (error) {
+          console.log(error)
+     });*/
+
+let a = '1546'
+let b = parseInt(a).toLocaleString();
+b = b.toString()
+console.log(b)
+b = b.replace(/\,/, '.')
+console.log(b)
+
+
 
