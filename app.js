@@ -402,13 +402,13 @@ app.get('/sesion/user/:email', async (req, res) => {
           ? daten.getMonth() + 1
           : `0${daten.getMonth() + 1}`
         }-${daten.getFullYear()}`;
-      proa.dateEnd = sesion[i].dateEnd
+      //proa.dateEnd = sesion[i].dateEnd
     } else {
       proa.dateEnd = '--';
       proa.timeEnd = '--';
     }
 
-    proa.dateStart = sesion[i].dateStart
+    //proa.dateStart = sesion[i].dateStart
 
     aux.push(proa);
   }
