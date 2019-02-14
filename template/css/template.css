@@ -185,7 +185,7 @@ b, strong, .bold {
   color: rgb(255, 217, 0);
 
 }
-#invoice-title-number #number {
+#invoice-title-number #nro_app {
   margin-left: 5px;
   text-align: left;
   font-size: 15px;

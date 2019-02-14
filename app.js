@@ -402,10 +402,13 @@ app.get('/sesion/user/:email', async (req, res) => {
           ? daten.getMonth() + 1
           : `0${daten.getMonth() + 1}`
         }-${daten.getFullYear()}`;
+      proa.dateEnd = sesion[i].dateEnd
     } else {
       proa.dateEnd = '--';
       proa.timeEnd = '--';
     }
+
+    proa.dateStart = sesion[i].dateStart
 
     aux.push(proa);
   }
@@ -1072,6 +1075,16 @@ app.get('/generate/cotizacion/:id', async function (req, res) {
   c = c.replace(/\,/, '.')
   cotizacion.totalciva = c
 
+  let nroFormat = cotizacion.cotizacion.toString()
+  let resNro = ''
+  let tam = 5 - nroFormat.length
+
+  for (let i = 0; i < tam; i++) {
+    resNro += '0'
+  }
+
+  resNro += nroFormat
+
   let content = `
   document.title = 'Presupuesto Prosip - ${cotizacion.cotizacion}'
   let cliente = '${cotizacion.cliente}';
@@ -1084,7 +1097,7 @@ app.get('/generate/cotizacion/:id', async function (req, res) {
   document.getElementById('uf_app').innerHTML = uf;
   let fecha = '${cotizacion.fecha}';
   document.getElementById('fecha_app').innerHTML = fecha;
-  let nro = '${cotizacion.cotizacion}';
+  let nro = '#${resNro}';
   document.getElementById('nro_app').innerHTML = nro;
   let nombre = '${cotizacion.nombre_proyecto}';
   document.getElementById('nombre_app').innerHTML = nombre;
@@ -1312,7 +1325,7 @@ async function sendEmail(email, namecotz, idcotz, isEdit, ubicacion, nameclient)
       aux = aux.replace(/llurlcotizacion/i, `https://api.prosip.cl/generate/cotizacion/${nrocotz}`)
 
       let mailOptions = {
-        from: `"Solución PROSIP N° ${nrocotz}" <foo@example.com>`,
+        from: `"Cubicador Prosip" <foo@example.com>`,
         to: email,
         subject: subj,
         html: aux
