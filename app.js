@@ -1115,6 +1115,8 @@ app.get('/generate/cotizacion/:id', async function (req, res) {
   let ufm2sip_app = '${cotizacion.ufm2sip} UF/M2';
   document.getElementById('ufm2sip_app').innerHTML = ufm2sip_app;
 
+  let elecomp_app = '$ ${cotizacion.total_comp}';
+  document.getElementById('elecomp_app').innerHTML = elecomp_app;
   let ufm2comp_app = '${cotizacion.ufm2comp} UF/M2';
   document.getElementById('ufm2comp_app').innerHTML = ufm2comp_app;
 
@@ -1227,8 +1229,6 @@ app.get('/generate/cotizacion/:id', async function (req, res) {
           if (cotizacion.items[i].nombre == `Turbo 8''` && tu8 == false) {
             content += `let turbo8_app = "<tr> <td></td> <td>${cotizacion.items[i].nombre}</td> <td>${cotizacion.items[i].cant}</td> <td>$ ${cotizacion.items[i].unit}</td> <td>$ ${cotizacion.items[i].subtotal}</td> <td></td> <td></td> </tr>"
                 document.getElementById('turbo8_app').innerHTML = turbo8_app;
-                let elecomp_app = '$ ${cotizacion.total_comp - cotizacion.items[i].subtotal}';
-                document.getElementById('elecomp_app').innerHTML = elecomp_app;
                 `;
             tu8 = true
           }
@@ -1557,6 +1557,7 @@ app.post('/cotizacion/new/:idproject', async (req, res) => {
         console.log();
       }
 
+      let tempTurbo8 = 0
 
 
       for (i in cotizacion.items) {
@@ -1567,6 +1568,9 @@ app.post('/cotizacion/new/:idproject', async (req, res) => {
               cotizacion.total_sip = cotizacion.total_sip + cotizacion.items[i].subtotal
             }
             if (materiales[j].elemento == 'Fijacion') {
+              if (materiales[j].nombre == `Turbo 8''`) {
+                tempTurbo8 = cotizacion.items[i].subtotal
+              }
               cotizacion.total_comp = cotizacion.total_comp + cotizacion.items[i].subtotal
             }
             if (materiales[j].elemento == 'Madera') {
@@ -1576,6 +1580,8 @@ app.post('/cotizacion/new/:idproject', async (req, res) => {
         }
 
       }
+
+      cotizacion.total_comp = cotizacion.total_comp - tempTurbo8
 
       cotizacion.ufm2sip = cotizacion.total_sip / cotizacion.uf / cotizacion.m2;
       cotizacion.ufm2comp = cotizacion.total_comp / cotizacion.uf / cotizacion.m2;
