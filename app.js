@@ -1110,8 +1110,6 @@ app.get('/generate/cotizacion/:id', async function (req, res) {
   let m2 = '${cotizacion.m2}';
   document.getElementById('m2_app').innerHTML = m2;
 
-  let sip_app = '$ ${cotizacion.total_sip}';
-  document.getElementById('sip_app').innerHTML = sip_app;
   let ufm2sip_app = '${cotizacion.ufm2sip} UF/M2';
   document.getElementById('ufm2sip_app').innerHTML = ufm2sip_app;
 
@@ -1229,6 +1227,8 @@ app.get('/generate/cotizacion/:id', async function (req, res) {
           if (cotizacion.items[i].nombre == `Turbo 8''` && tu8 == false) {
             content += `let turbo8_app = "<tr> <td></td> <td>${cotizacion.items[i].nombre}</td> <td>${cotizacion.items[i].cant}</td> <td>$ ${cotizacion.items[i].unit}</td> <td>$ ${cotizacion.items[i].subtotal}</td> <td></td> <td></td> </tr>"
                 document.getElementById('turbo8_app').innerHTML = turbo8_app;
+                let sip_app = '$ ${cotizacion.total_sip - cotizacion.items[i].subtotal}';
+                document.getElementById('sip_app').innerHTML = sip_app;
                 `;
             tu8 = true
           }
