@@ -1075,6 +1075,16 @@ app.get('/generate/cotizacion/:id', async function (req, res) {
   c = c.replace(/\,/, '.')
   cotizacion.totalciva = c
 
+  let d = parseInt(cotizacion.total_sip).toLocaleString();
+  d = d.toString()
+  d = d.replace(/\,/, '.')
+  cotizacion.total_sip = d
+
+  let e = parseInt(cotizacion.total_comp).toLocaleString();
+  e = e.toString()
+  e = e.replace(/\,/, '.')
+  cotizacion.total_comp = e
+
   let nroFormat = cotizacion.cotizacion.toString()
   let resNro = ''
   let tam = 5 - nroFormat.length
